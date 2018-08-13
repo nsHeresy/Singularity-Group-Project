@@ -5,3 +5,5 @@
 To make the camera follow the player ship
 * https://answers.unity.com/questions/199716/bullet-targeting-cursor.html
 To improve targetting reticule later(?)
+* Library to handle movement and steering - https://assetstore.unity.com/packages/tools/input-management/spaceflight-controls-24532
+Search String: 'unity 3d spaceship controls'
