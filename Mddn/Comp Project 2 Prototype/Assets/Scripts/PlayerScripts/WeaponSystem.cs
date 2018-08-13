@@ -8,7 +8,9 @@ public class WeaponSystem : MonoBehaviour {
 	
 	//range of the weapon
 	//used externally for targeting reticule
-	public static float range = 200;
+	public static int range = 300;
+	public int damage = 10;
+
 	public int shotsToCooldown = 32;
 	public int currentShots = 0;
 	
@@ -17,11 +19,9 @@ public class WeaponSystem : MonoBehaviour {
 	}
 	
 	void Update () {
-		
-	}
-	
-	void onMouseDown() {
-		shoot();
+		if(Input.GetButtonDown("Fire1")){
+			shoot();
+		}
 	}
 	
 	
@@ -37,15 +37,24 @@ public class WeaponSystem : MonoBehaviour {
 	
 	public bool shoot() {
 		//stub for shooting system - implement later
-		return true;
+		if(currentShots <= shotsToCooldown){
+			Debug.Log("Shooting");
+			currentShots++;
+			RaycastHit hit = new RaycastHit();
+			if(Physics.Raycast(ship.transform.position, ship.transform.forward, out hit, range)){
+				Debug.Log("Hit");
+				applyHit(hit, damage);
+				return true;
+			}	
+		}
+		else {
+			Debug.Log("Cooldown");
+			return false;
+		}
+		return false;
 	}
 
-	
-	///////////
-	//GETTERS//
-	///////////
-	
-	public float getRange() {
-		return range;
+	public void applyHit(RaycastHit hit, int damage) {
+		
 	}
 }
