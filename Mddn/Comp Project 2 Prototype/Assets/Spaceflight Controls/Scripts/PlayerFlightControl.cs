@@ -6,7 +6,7 @@ public class PlayerFlightControl : MonoBehaviour
 {
 
 	//"Objects", "For the main ship Game Object and weapons"));
-	public GameObject actual_model; //"Ship GameObject", "Point this to the Game Object that actually contains the mesh for the ship. Generally, this is the first child of the empty container object this controller is placed in."
+	public GameObject actual_model; //"Ship GameObject", 
 	public Transform weapon_hardpoint_1; //"Weapon Hardpoint", "Transform for the barrel of the weapon"
 	public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
 
@@ -48,6 +48,8 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	bool thrust_exists = true;
 	bool roll_exists = true;
+
+    Rigidbody rigidbody;
 	
 	//---------------------------------------------------------------------------------
 	
@@ -63,20 +65,28 @@ public class PlayerFlightControl : MonoBehaviour
 			Input.GetAxis("Thrust");
 		} catch {
 			thrust_exists = false;
-			Debug.LogError("(Flight Controls) Thrust input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Thrust' so the ship can change speeds.");
+			Debug.LogError("(Flight Controls) Thrust input axis not set up!");
 		}
 		
 		try {
 			Input.GetAxis("Roll");
 		} catch {
 			roll_exists = false;
-			Debug.LogError("(Flight Controls) Roll input axis not set up! Go to Edit>Project Settings>Input to create a new axis called 'Roll' so the ship can roll.");
+			Debug.LogError("(Flight Controls) Roll input axis not set up!");
 		}
+
+        rigidbody = GetComponent<Rigidbody>();
 		
 	}
 	
 	
 	void FixedUpdate () {
+
+        //reset the speed of the object to 0 - DRIVER
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            this.resetSpeeds();
+            return;
+        }
 		
 		if (actual_model == null) {
 			Debug.LogError("(FlightControls) Ship GameObject is null.");
@@ -184,15 +194,15 @@ public class PlayerFlightControl : MonoBehaviour
 	}
 
 	
-	void Update() {
-	
+	//void Update() {
+	//
 		//Please remove this and replace it with a shooting system that works for your game, if you need one.
-		if (Input.GetMouseButtonDown(0)) {
-			fireShot();
-		}
-
-	
-	}
+	//	if (Input.GetMouseButtonDown(0)) {
+	//		fireShot();
+	//	}
+    //
+    //	
+	//}
 	
 	
 	public void fireShot() {
@@ -236,6 +246,11 @@ public class PlayerFlightControl : MonoBehaviour
 		}
 	
 	}
+
+    void resetSpeeds() {
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+    }
 	
 
 }

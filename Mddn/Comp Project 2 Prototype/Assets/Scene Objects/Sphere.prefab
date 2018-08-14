@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33983633228650962}
   - component: {fileID: 23278711256037314}
   - component: {fileID: 135840108562187320}
+  - component: {fileID: 54279994350934680}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -84,6 +85,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689761262526236}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54279994350934680
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689761262526236}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!135 &135840108562187320
 SphereCollider:
   m_ObjectHideFlags: 1

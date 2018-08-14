@@ -42,8 +42,8 @@ public class CustomPointer : MonoBehaviour {
 	void Start () {
 	
 		//Uncomment for Unity 5 to get rid of the warnings.
-		//Cursor.lockState = CursorLockMode.Locked;
-		//Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		
 		Screen.lockCursor = true;
 		
@@ -138,7 +138,19 @@ public class CustomPointer : MonoBehaviour {
 			
 		}
 	}
-	
-	
-	
+
+    public static void TogglePause() {
+        if (PauseMenuScripts.isGamePaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            //Screen.lockCursor = false;
+        }
+        else {
+            //Screen.lockCursor = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+        }
+    }
 }
