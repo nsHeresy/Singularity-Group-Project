@@ -63,7 +63,6 @@
   <ItemGroup>
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\Inspectors\ShaderForgeInspector.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\Inspectors\ShaderForgeMaterialInspector.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Editor\FlightSysEditor.cs" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_LightPosition\SFN_LightPosition.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_Fresnel\SFN_Fresnel_EXP.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_Trunc\SFN_Trunc.shader" />
@@ -547,10 +546,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{0F88A856-EFAC-058D-4F30-6B5275A1C13F}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{46C6BFAA-0460-DD48-B4C8-7F726F52F84C}</Project>
       <Name>Assembly-CSharp</Name>

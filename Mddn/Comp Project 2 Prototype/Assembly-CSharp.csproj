@@ -61,24 +61,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PauseMenuScripts.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\LevelController.cs" />
+    <Compile Include="Assets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\PauseMenuScripts.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCameraController.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\PlayerShipController.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\WeaponSystem.cs" />
+    <Compile Include="Assets\Scripts\Spaceflight Controls\bullet.cs" />
+    <Compile Include="Assets\Scripts\Spaceflight Controls\CameraFlightFollow.cs" />
+    <Compile Include="Assets\Scripts\Spaceflight Controls\CustomPointer.cs" />
+    <Compile Include="Assets\Scripts\Spaceflight Controls\DemoUI.cs" />
+    <Compile Include="Assets\Scripts\Spaceflight Controls\PlayerFlightControl.cs" />
+    <Compile Include="Assets\Scripts\Spaceflight Controls\PSDestroy.cs" />
+    <Compile Include="Assets\Scripts\SpawnController.cs" />
+    <Compile Include="Assets\Scripts\Targetable.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Scripts\EditorLabel.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Scripts\EnableCameraDepthInForward.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Scripts\SoftNormalsToVertexColor.cs" />
     <Compile Include="Assets\Skyboxes\Scripts\ColorPicker_Material.cs" />
     <Compile Include="Assets\Skyboxes\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Skyboxes\Scripts\SmoothCameraOrbit.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Scripts\bullet.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Scripts\CustomPointer.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Scripts\DemoUI.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Scripts\PlayerFlightControl.cs" />
-    <Compile Include="Assets\Spaceflight Controls\Scripts\PSDestroy.cs" />
-    <Compile Include="Assets\Targetable.cs" />
-    <None Include="Assets\Spaceflight Controls\Documentation\Spaceflight Controls Setup Guide.txt" />
     <None Include="Assets\Shader Forge\TesterManual.txt" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Readme.txt" />
     <None Include="Assets\Skyboxes\Nebula Skyboxes - Readme.txt" />
@@ -331,12 +333,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>D:/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{0F88A856-EFAC-058D-4F30-6B5275A1C13F}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
