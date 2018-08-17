@@ -15,7 +15,7 @@ public class CustomPointer : MonoBehaviour {
 	public bool instant_snapping = false; //If the pointer returns to the center, this will make it return to the center instantly when input is idle. Only works for joysticks
 	public float center_speed = 5f; //How fast the pointer returns to the center.
 
-	public bool center_lock = false; //Pointer graphic will be locked to the center. Also affects shooting raycast (always shoots to the center of the screen)
+	public bool center_lock = true; //Pointer graphic will be locked to the center. Also affects shooting raycast (always shoots to the center of the screen)
 
 	public bool invert_y_axis = false; //Inverts the y axis.
 	
@@ -88,22 +88,8 @@ public class CustomPointer : MonoBehaviour {
 			pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Horizontal"), 2),
 				                               y_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Vertical"), 2));
 
-		}/* else if (use_accelerometer_input) {
-			//WARNING: UNTESTED.
-			//This /should/ be fairly close to working, though.
-			//I would have tested this, but apparently Unity couldn't detect my Windows Phone 8 SDK.
-			
-			//Even though it's untested, the priciples of control are probably going to be very similar to the above two.
-			
-			float x_axis = Input.acceleration.x;
-			float y_axis = -Input.acceleration.z;
+		}
 		
-			pointerPosition += new Vector2(x_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Horizontal"), 2),
-			                               y_axis * thumbstick_speed_modifier * Mathf.Pow(Input.GetAxis("Vertical"), 2));
-			
-		
-		
-		}*/
 		
 		//If the pointer returns to the center of the screen and it's not in the deadzone...
 		if (pointer_returns_to_center && !deadzone_rect.Contains(pointerPosition)) {
@@ -140,7 +126,7 @@ public class CustomPointer : MonoBehaviour {
 	}
 
     public static void TogglePause() {
-        if (PauseMenuScripts.isGamePaused)
+        if (PauseController.isGamePaused)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

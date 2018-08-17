@@ -6,6 +6,9 @@ public class Targetable : MonoBehaviour {
 
 
     public GameObject entity;
+    public GameObject explosion;
+    public Animation deathAnim;
+
     public float health;
     public bool isDead = false;
 
@@ -22,7 +25,7 @@ public class Targetable : MonoBehaviour {
 		
 	}
 
-    public void damage(float amount) {
+    public void Damage(float amount) {
         health -= amount;
         if (health <= 0) {
             StartCoroutine(Death());
@@ -33,12 +36,13 @@ public class Targetable : MonoBehaviour {
 
         isDead = true;
         playDeathAnimation();
-        GameObject.Destroy(entity);
+        Destroy(entity);
         yield return null;
     }
 
     void playDeathAnimation() {
         Debug.Log("It's dead, Jim");
+        GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
         //Explosion, followed by phase out (Brackeys)
     }
 }

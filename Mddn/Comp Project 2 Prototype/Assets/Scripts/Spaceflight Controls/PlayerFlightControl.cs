@@ -87,6 +87,11 @@ public class PlayerFlightControl : MonoBehaviour
             this.resetSpeeds();
             return;
         }
+
+        if (Input.GetKeyDown(KeyCode.BackQuote)) {
+            this.driverSelfDestruct();
+            return;
+        }
 		
 		if (actual_model == null) {
 			Debug.LogError("(FlightControls) Ship GameObject is null.");
@@ -193,63 +198,14 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	}
 
-	
-	//void Update() {
-	//
-		//Please remove this and replace it with a shooting system that works for your game, if you need one.
-	//	if (Input.GetMouseButtonDown(0)) {
-	//		fireShot();
-	//	}
-    //
-    //	
-	//}
-	
-	
-	public void fireShot() {
-	
-		if (weapon_hardpoint_1 == null) {
-			Debug.LogError("(FlightControls) Trying to fire weapon, but no hardpoint set up!");
-			return;
-		}
-		
-		if (bullet == null) {
-			Debug.LogError("(FlightControls) Bullet GameObject is null!");
-			return;
-		}
-		
-		//Shoots it in the direction that the pointer is pointing. Might want to take note of this line for when you upgrade the shooting system.
-		if (Camera.main == null) {
-			Debug.LogError("(FlightControls) Main camera is null! Make sure the flight camera has the tag of MainCamera!");
-			return;
-		}
-		
-		GameObject shot1 = (GameObject) GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
-		
-		Ray vRay;
-		
-		if (!CustomPointer.instance.center_lock)
-			vRay = Camera.main.ScreenPointToRay(CustomPointer.pointerPosition);
-		else
-			vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
-			
-			
-		RaycastHit hit;
-		
-		//If we make contact with something in the world, we'll make the shot actually go to that point.
-		if (Physics.Raycast(vRay, out hit)) {
-			shot1.transform.LookAt(hit.point);
-			shot1.GetComponent<Rigidbody>().AddForce((shot1.transform.forward) * 9000f);
-		
-		//Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
-		} else {
-			shot1.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
-		}
-	
-	}
-
     void resetSpeeds() {
+        //driver for testing ship movement
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
+    }
+
+    void driverSelfDestruct() {
+        GetComponent<Targetable>().Damage(101);
     }
 	
 

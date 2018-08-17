@@ -61,16 +61,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\LevelController.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
-    <Compile Include="Assets\Scripts\PauseMenuScripts.cs" />
+    <Compile Include="Assets\Scripts\PauseController.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\WeaponSystem.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\bullet.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\CameraFlightFollow.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\CustomPointer.cs" />
-    <Compile Include="Assets\Scripts\Spaceflight Controls\DemoUI.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\PlayerFlightControl.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\PSDestroy.cs" />
     <Compile Include="Assets\Scripts\SpawnController.cs" />
@@ -83,8 +83,10 @@
     <Compile Include="Assets\Skyboxes\Scripts\SmoothCameraOrbit.cs" />
     <None Include="Assets\Shader Forge\TesterManual.txt" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Readme.txt" />
+    <None Include="Assets\BlackHole\Shader\Opaque.shader" />
     <None Include="Assets\Skyboxes\Nebula Skyboxes - Readme.txt" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\Vegetation.shader" />
+    <None Include="Assets\BlackHole\Shader\OpaqueFresnel.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\VertexAnimation.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\Refraction.shader" />
     <None Include="Assets\BlackHole\Shader\AlphaBlend.shader" />
@@ -93,6 +95,7 @@
     <None Include="Assets\Shader Forge\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\VertexColorRounding.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\TessellationDisplacement.shader" />
+    <None Include="Assets\BlackHole\Shader\Add.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\Tiles.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\PixelRotator.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\CustomLighting.shader" />

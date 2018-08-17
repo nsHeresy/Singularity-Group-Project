@@ -19,9 +19,12 @@ public class bullet : MonoBehaviour {
 	
 	
 	void OnCollisionEnter(Collision col) {
-	
-		GameObject.Instantiate(explo, col.contacts[0].point, Quaternion.identity);
-	
+
+        GameObject hitObject = col.gameObject;
+        if (hitObject.GetComponent<Targetable>() != null)
+            Debug.Log("It's a hit!");
+            hitObject.GetComponent<Targetable>().Damage(1);
+		GameObject.Instantiate(explo, col.contacts[0].point, Quaternion.identity);	
 		Destroy(gameObject);
 	}
 	

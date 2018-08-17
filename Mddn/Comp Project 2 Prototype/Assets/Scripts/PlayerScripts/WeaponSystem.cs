@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponSystem : MonoBehaviour {
 	
 	public GameObject ship;
+
+    public GameObject impactEffect;
 	
 	//range of the weapon
 	//used externally for targeting reticule
@@ -14,13 +16,9 @@ public class WeaponSystem : MonoBehaviour {
 	public int shotsToCooldown = 32;
 	public int currentShots = 0;
 	
-	void Start () {
-		//currentShots = 0;
-	}
-	
 	void Update () {
 		if(Input.GetButtonDown("Fire1")){
-			shoot();
+			Shoot();
 		}
 	}
 	
@@ -29,21 +27,25 @@ public class WeaponSystem : MonoBehaviour {
 	//UTILITY//
 	///////////
 	
-	public bool isObjectInRange() {
+	public bool IsObjectInRange() {
 		//stub for hit/range detection - implement later
 		return true;
 	}
+
+    public void SwitchWeapons() {
+        //stub
+    }
 	
 	
-	public bool shoot() {
+	public bool Shoot() {
 		//stub for shooting system - implement later
 		if(currentShots <= shotsToCooldown){
 			Debug.Log("Shooting");
 			currentShots++;
 			RaycastHit hit = new RaycastHit();
 			if(Physics.Raycast(ship.transform.position, ship.transform.forward, out hit, range)){
-				Debug.Log("Hit");
-				applyHit(hit, damage);
+				//Debug.Log("Hit");
+				ApplyHit(hit, damage);
 				return true;
 			}	
 		}
@@ -54,7 +56,10 @@ public class WeaponSystem : MonoBehaviour {
 		return false;
 	}
 
-	public void applyHit(RaycastHit hit, int damage) {
-		
+	public void ApplyHit(RaycastHit hit, int damage) {
+        GameObject.Instantiate(impactEffect, hit.point, Quaternion.identity);
+        Targetable t = hit.collider.gameObject.GetComponent<Targetable>();
+        if (t != null)
+            t.Damage(damage);
 	}
 }
