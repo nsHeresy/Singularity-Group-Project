@@ -7,8 +7,6 @@ public class PlayerFlightControl : MonoBehaviour
 
 	//"Objects", "For the main ship Game Object and weapons"));
 	public GameObject actual_model; //"Ship GameObject", 
-	public Transform weapon_hardpoint_1; //"Weapon Hardpoint", "Transform for the barrel of the weapon"
-	public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
 
 	//"Core Movement", "Controls for the various speeds for different operations."
 	public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"

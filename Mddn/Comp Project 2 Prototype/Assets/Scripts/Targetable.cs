@@ -6,24 +6,16 @@ public class Targetable : MonoBehaviour {
 
 
     public GameObject entity;
+    public float health;
+
+    //Animations and Particles
     public GameObject explosion;
     public Animation deathAnim;
 
-    public float health;
+
     public bool isDead = false;
 
-    //Animations and Particles
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void Damage(float amount) {
         health -= amount;
