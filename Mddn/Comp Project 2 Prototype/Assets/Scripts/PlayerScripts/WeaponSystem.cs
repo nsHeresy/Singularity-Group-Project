@@ -14,9 +14,6 @@ public class WeaponSystem : MonoBehaviour {
 	public static int range = 300;
 	public int damage = 10;
 
-	public int shotsToCooldown = 32;
-	public int currentShots = 0;
-
     //weapon vars
     LineRenderer gunLine;
     AudioSource gunAudio;
@@ -24,7 +21,7 @@ public class WeaponSystem : MonoBehaviour {
 
     //utils
     float timer;
-    float timeBetweenShots = 0.5f;
+    float timeBetweenShots = 0.3f;
     float effectDisplayTime = 0.2f;
 
     private void Awake() {
@@ -60,46 +57,34 @@ public class WeaponSystem : MonoBehaviour {
     public void SwitchWeapons() {
         //stub
     }
-	
-	
-	public void Shoot() {
+
+
+    public void Shoot() {
         timer = 0f;
 
         Ray shootRay = new Ray();
         RaycastHit hit = new RaycastHit();
 
 
-        if (currentShots <= shotsToCooldown){
-			Debug.Log("Shooting");
-			currentShots++;
+        gunLight.enabled = true;
+        gunLine.enabled = true;
 
+        gunAudio.Play();
 
+        gunLine.SetPosition(0, transform.position);
 
-            gunLight.enabled = true;
-            gunLine.enabled = true;
+        shootRay.origin = transform.position;
+        shootRay.direction = transform.forward;
 
-            gunAudio.Play();
-
-            gunLine.SetPosition(0, transform.position);
-
-            shootRay.origin = transform.position;
-            shootRay.direction = transform.forward;
-
-            if (Physics.Raycast(shootRay, out hit, range)) {
+        if (Physics.Raycast(shootRay, out hit, range)) {
             //if (Physics.Raycast(ship.transform.position, ship.transform.forward, out hit, range)) {
-                gunLine.SetPosition(1,hit.point);
-                ApplyHit(hit, damage);
-            }
-
-            else {
-                //did not hit anything
-                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-            }
+            gunLine.SetPosition(1, hit.point);
+            ApplyHit(hit, damage);
         }
 
-		else {
-			Debug.Log("Cooldown");
-		}
+        else {
+            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+        }
 	}
 
 	public void ApplyHit(RaycastHit hit, int damage) {
