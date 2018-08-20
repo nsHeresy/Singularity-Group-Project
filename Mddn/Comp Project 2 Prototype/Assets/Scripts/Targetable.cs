@@ -9,8 +9,9 @@ public class Targetable : MonoBehaviour {
     public float health;
 
     //Animations and Particles
-    public GameObject explosion;
+    public ParticleSystem explosion;
     public Animation deathAnim;
+    public AudioClip explNoise;
 
 
     public bool isDead = false;
@@ -19,6 +20,8 @@ public class Targetable : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
         Debug.Log(magnitude);
+        Damage(magnitude);
+        GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
 
 
@@ -40,6 +43,6 @@ public class Targetable : MonoBehaviour {
     void playDeathAnimation() {
         Debug.Log("It's dead, Jim");
         GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
-        //Explosion, followed by phase out (Brackeys)
+        AudioSource.PlayClipAtPoint(explNoise,entity.transform.position,1f);
     }
 }

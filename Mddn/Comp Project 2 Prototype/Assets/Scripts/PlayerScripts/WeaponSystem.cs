@@ -77,7 +77,6 @@ public class WeaponSystem : MonoBehaviour {
         shootRay.direction = transform.forward;
 
         if (Physics.Raycast(shootRay, out hit, range)) {
-            //if (Physics.Raycast(ship.transform.position, ship.transform.forward, out hit, range)) {
             gunLine.SetPosition(1, hit.point);
             ApplyHit(hit, damage);
         }

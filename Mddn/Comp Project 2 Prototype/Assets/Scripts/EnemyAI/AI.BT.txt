@@ -1,0 +1,22 @@
+tree("root")
+    fallback tree("Attack") tree("Approach") tree("Reset")
+   
+tree("Attack")
+    while IsPlayerWithinAttackRange
+        sequence
+            RotateTowardsPlayer
+            Fire
+       
+tree("Approach")
+    while IsPlayerWithinApproachRange
+        parallel
+            repeat RotateTowardsPlayer
+            repeat MoveForward
+
+tree("Reset")
+	repeat
+		sequence
+			SetRandomLocation
+			while IsDestNotInRange
+				repeat	
+					MoveTowardsRandomLocation

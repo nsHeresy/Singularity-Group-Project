@@ -138,6 +138,7 @@
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\Shader Presets\PresetCustomLighting.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_Parallax\SFN_Parallax_DEP_REF.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_Set\SFN_Set.shader" />
+    <None Include="Assets\EffectExamples\Editor\PackageManagerAssembly\PackageImportList.txt" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_LightColor\SFN_LightColor.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_Cross\SFN_Cross.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_Subtract\SFN_Subtract.shader" />
@@ -529,6 +530,15 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PackageManagerAssembly">
+      <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
+    </Reference>
+    <Reference Include="PandaBehaviour">
+      <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/PandaBehaviour/Core/PandaBehaviour.dll</HintPath>
+    </Reference>
+    <Reference Include="PandaBehaviourEditor">
+      <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/PandaBehaviour/Core/Editor/PandaBehaviourEditor.dll</HintPath>
+    </Reference>
     <Reference Include="ShaderForge">
       <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/Shader Forge/Assets/ShaderForge/Editor/ShaderForge.dll</HintPath>
     </Reference>
@@ -552,12 +562,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="PandaBehaviour">
-      <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/PandaBehaviour/Core/PandaBehaviour.dll</HintPath>
-    </Reference>
-    <Reference Include="PandaBehaviourEditor">
-      <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/PandaBehaviour/Core/Editor/PandaBehaviourEditor.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Unity/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>

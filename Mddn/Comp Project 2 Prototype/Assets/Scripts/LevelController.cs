@@ -14,10 +14,12 @@ public class LevelController : MonoBehaviour {
     float timeBetweenPortals = 60f;
     float portalCooldown = 0f;
 
+    ArrayList portalPairs;
 
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
         Color fadeToClear = new Color(1f, 1f, 1f, 0f);
         panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
@@ -45,17 +47,24 @@ public class LevelController : MonoBehaviour {
 		
 	}
 
+    void DestroyPortals() {
+        foreach (GameObject a in portalPairs)
+        {
+            Destroy(a);
+        }
+    }
+
     ArrayList OpenPairedPortals() {
 
         portalCooldown = timeBetweenPortals;
 
         int numPortalPairs = Random.Range(1,3);
-        ArrayList portalPairs = new ArrayList();
+        portalPairs = new ArrayList();
 
         for (int n = 0; n < numPortalPairs; n++) {
 
-            Vector3 locationA = new Vector3(Random.Range(-500, 500), Random.Range(-500, 500), Random.Range(-500, 500));
-            Vector3 locationB = new Vector3(Random.Range(-500, 500), Random.Range(-500, 500), Random.Range(-500, 500));
+            Vector3 locationA = new Vector3(Random.Range(0, 1000), Random.Range(0, 500), Random.Range(-300, 300));
+            Vector3 locationB = new Vector3(Random.Range(0, 1000), Random.Range(0, 500), Random.Range(-300, 300));
 
             GameObject portalA = GameObject.Instantiate(Wormhole, locationA, Random.rotation);
             GameObject portalB = GameObject.Instantiate(Wormhole, locationB, Random.rotation);

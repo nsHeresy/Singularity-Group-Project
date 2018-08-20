@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public GameObject spawnLocation;
+    public GameObject enemyPrefab;
+    public int waveSize = 30;
+
+    bool isWaveActive = false;
+
+    GameObject currentEnemy;
+    
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
+
+     void SpawnWave(int waveSize) {
+        //Stub for wave implementation
+    }
+
+    void DeleteWave() {
+        //stub for deleting wave
+    }
+
+    void ModifyWave() {
+        //stub for incrementing wave count, changing wave settings etc
+    }
+
+
+
+
 }
