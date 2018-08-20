@@ -16,6 +16,11 @@ public class Targetable : MonoBehaviour {
     public bool isDead = false;
 
 
+    private void OnCollisionEnter(Collision collision) {
+        float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
+        Debug.Log(magnitude);
+    }
+
 
     public void Damage(float amount) {
         health -= amount;

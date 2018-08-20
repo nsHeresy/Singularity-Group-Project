@@ -5,10 +5,10 @@ using UnityEngine;
 public class ScenicBody : MonoBehaviour {
 
     float RotationSpeed = 0.005f;
+    float modifier = 0.5f;
     
 	// Update is called once per frame
 	void Update () {
-        if(!PauseController.isGamePaused)
-        transform.Rotate(new Vector3(RotationSpeed,RotationSpeed,RotationSpeed));
+        transform.Rotate(new Vector3(RotationSpeed * modifier * Time.timeScale, RotationSpeed * modifier * Time.timeScale, RotationSpeed * modifier * Time.timeScale));
 	}
 }

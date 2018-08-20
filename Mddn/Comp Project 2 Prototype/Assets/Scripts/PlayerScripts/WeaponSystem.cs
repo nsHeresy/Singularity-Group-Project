@@ -21,7 +21,7 @@ public class WeaponSystem : MonoBehaviour {
 
     //utils
     float timer;
-    float timeBetweenShots = 0.3f;
+    float timeBetweenShots = 0.1f;
     float effectDisplayTime = 0.2f;
 
     private void Awake() {
@@ -35,7 +35,7 @@ public class WeaponSystem : MonoBehaviour {
     void Update () {
         timer += Time.deltaTime;
 
-		if(Input.GetButtonDown("Fire1") && timer >= timeBetweenShots){
+		if(Input.GetButton("Fire1") && timer >= timeBetweenShots && !PauseController.isGamePaused){
 			Shoot();
 		}
 

@@ -1,0 +1,13 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class FadeIn : MonoBehaviour {
+    
+    public Image panel;
+    
+    public void PanelFade(Color color, float fadeTime, bool ignoreTimeScale) {
+        panel.CrossFadeColor(color, fadeTime, ignoreTimeScale, true);
+    }
+}

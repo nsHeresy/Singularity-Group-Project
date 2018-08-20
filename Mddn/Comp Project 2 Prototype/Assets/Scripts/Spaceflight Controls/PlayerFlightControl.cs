@@ -7,6 +7,7 @@ public class PlayerFlightControl : MonoBehaviour
 
 	//"Objects", "For the main ship Game Object and weapons"));
 	public GameObject actual_model; //"Ship GameObject", 
+    public ParticleSystem mainThruster;
 
 	//"Core Movement", "Controls for the various speeds for different operations."
 	public float speed = 20.0f; //"Base Speed", "Primary flight speed, without afterburners or brakes"
@@ -76,10 +77,9 @@ public class PlayerFlightControl : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
 		
 	}
-	
-	
-	void FixedUpdate () {
 
+    void FixedUpdate () {
+        
         //reset the speed of the object to 0 - DRIVER
         if (Input.GetKeyDown(KeyCode.Tab)) {
             this.resetSpeeds();
@@ -91,55 +91,58 @@ public class PlayerFlightControl : MonoBehaviour
             return;
         }
 		
-		if (actual_model == null) {
-			Debug.LogError("(FlightControls) Ship GameObject is null.");
-			return;
-		}
+	    if (actual_model == null) {
+		    Debug.LogError("(FlightControls) Ship GameObject is null.");
+		    return;
+	    }
 		
 		
-		updateCursorPosition();
+	    updateCursorPosition();
 		
-		//Clamping the pitch and yaw values, and taking in the roll input.
-		pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
-		yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
-		if (roll_exists)
-			roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
+	    //Clamping the pitch and yaw values, and taking in the roll input.
+	    pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
+	    yaw = Mathf.Clamp(distFromHorizontal, -screen_clamp - DZ, screen_clamp  + DZ) * pitchYaw_strength;
+	    if (roll_exists)
+		    roll = (Input.GetAxis("Roll") * -rollSpeedModifier);
 			
 		
-		//Getting the current speed.
-		currentMag = GetComponent<Rigidbody>().velocity.magnitude;
+	    //Getting the current speed.
+	    currentMag = GetComponent<Rigidbody>().velocity.magnitude;
 		
-		//If input on the thrust axis is positive, activate afterburners.
+	    //If input on the thrust axis is positive, activate afterburners.
 
-		if (thrust_exists) {
-			if (Input.GetAxis("Thrust") > 0) {
-				afterburner_Active = true;
-				slow_Active = false;
-				currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
+	    if (thrust_exists) {
+		    if (Input.GetAxis("Thrust") > 0) {
+                mainThruster.Play();
+			    afterburner_Active = true;
+			    slow_Active = false;
+			    currentMag = Mathf.Lerp(currentMag, afterburner_speed, thrust_transition_speed * Time.deltaTime);
 				
-			} else if (Input.GetAxis("Thrust") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
-				slow_Active = true;
-				afterburner_Active = false;
-				currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
+		    } else if (Input.GetAxis("Thrust") < 0) { 	//If input on the thrust axis is negatve, activate brakes.
+			    slow_Active = true;
+			    afterburner_Active = false;
+			    currentMag = Mathf.Lerp(currentMag, slow_speed, thrust_transition_speed * Time.deltaTime);
 				
-			} else { //Otherwise, hold normal speed.
-				slow_Active = false;
-				afterburner_Active = false;
-				currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
+		    } else { //Otherwise, hold normal speed.
+                mainThruster.Pause();
+                mainThruster.Clear();
+			    slow_Active = false;
+			    afterburner_Active = false;
+			    currentMag = Mathf.Lerp(currentMag, speed, thrust_transition_speed * Time.deltaTime);
 				
-			}
-		}
+		    }
+	    }
 				
-		//Apply all these values to the rigidbody on the container.
-		GetComponent<Rigidbody>().AddRelativeTorque(
-			(pitch * turnspeed * Time.deltaTime),
-			(yaw * turnspeed * Time.deltaTime),
-			(roll * turnspeed *  (rollSpeedModifier / 2) * Time.deltaTime));
+	    //Apply all these values to the rigidbody on the container.
+	    GetComponent<Rigidbody>().AddRelativeTorque(
+		    (pitch * turnspeed * Time.deltaTime),
+		    (yaw * turnspeed * Time.deltaTime),
+		    (roll * turnspeed *  (rollSpeedModifier / 2) * Time.deltaTime));
 		
-		GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
+	    GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
 		
-		if (use_banking)
-			updateBanking(); //Calculate banking.
+	    if (use_banking)
+		    updateBanking(); //Calculate banking.
 		
 	}		
 		
@@ -202,7 +205,7 @@ public class PlayerFlightControl : MonoBehaviour
         rigidbody.angularVelocity = Vector3.zero;
     }
 
-    void driverSelfDestruct() {
+    public void driverSelfDestruct() {
         GetComponent<Targetable>().Damage(101);
     }
 	
