@@ -20,8 +20,10 @@ Mouse left: Ship turn left
 Mouse Right: Ship turn right
 
 Escape: Pause game/unpause game
+From the pause menu, you can resume, reset, and quit the game using the buttons. 
+***Note, at time of submission the exe and app sometimes break the buttons on the main menu. No idea why, spent way too much time trying to figure it out...***
 
-Bonus: Try moving the mouse to one side, then quickly moving it back to the other side. If you get it right, you can do a little barrel roll!
+**Bonus: Try moving the mouse to one side, then quickly moving it back to the other side. If you get it right, you can do a little barrel roll!**
 
 ### Drivers
 `: Destroy Ship
