@@ -21,6 +21,8 @@ public class BlackHoleController : MonoBehaviour {
 	}
 
     bool isPlayerInDistance() {
-        return (Vector3.Distance(gameObject.transform.position, player.transform.position)<= 75);
+        if(gameObject != null && player != null)
+            return (Vector3.Distance(gameObject.transform.position, player.transform.position)<= 75);
+        return false;
     }
 }

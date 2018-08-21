@@ -9,9 +9,13 @@ public class LevelController : MonoBehaviour {
     public GameObject Wormhole;
 
     public Image panel;
+    public Image gameOverPanel;
+
+    public Canvas gameOverUI;
+    public Canvas gameUI;
 
     int waveCount = 0;
-    float timeBetweenPortals = 60f;
+    float timeBetweenPortals = 30f;
     float portalCooldown = 0f;
 
     ArrayList portalPairs;
@@ -42,6 +46,7 @@ public class LevelController : MonoBehaviour {
 
         if (player == null) {
             Debug.Log("End the Game");
+            EndTheGame();
             Time.timeScale = 0.2f;
         }
 		
@@ -85,6 +90,17 @@ public class LevelController : MonoBehaviour {
     }
 
     void openLevel() {
+
+    }
+
+    void EndTheGame() {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        gameOverPanel.GetComponent<FadeIn>().PanelFade(new Color(0f, 0f, 0f, 255f), 2f, false); 
+        gameUI.enabled = false;
+        gameOverUI.enabled = true;
+        Time.timeScale = 0.2f;
 
     }
 }

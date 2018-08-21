@@ -20,7 +20,7 @@ public class Targetable : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
         Debug.Log(magnitude);
-        Damage(magnitude);
+        Damage(magnitude * 3);
         GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
 

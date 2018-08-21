@@ -32,7 +32,7 @@ public class CameraFlightFollow : MonoBehaviour {
 	void FixedUpdate () {
 
 		if (target == null) {
-			Debug.LogError("(Flight Controls) Camera target is null!");
+			
 			return;
 		}	
 		

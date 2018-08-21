@@ -49,6 +49,8 @@ public class Teleport : MonoBehaviour {
 
     bool isPlayerInDistance()
     {
-        return (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 30);
+        if(player != null)
+            return (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 30);
+        return false;
     }
 }
