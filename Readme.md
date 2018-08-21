@@ -9,6 +9,11 @@ The player controls a single starfighter, and must defend the station against wa
 The presence of this entity causes wormholes to open up in the area, which will teleport the player between them if they fly into one. These can be used to make
 a quick getaway, or get the drop on an unsuspecting foe. As time goes on, more and more of these portals will spawn, making travel in the area ever more unpredictable.
 
+##Setup
+You should just be able to run the appropriate file (.exe for Windows, .app for mac), and be straight into the main game. 
+If, for whatever reason, you do have to test this in the unity client, open the GameLevel scene (Assets/Scenes/GameLevel), and play that.
+***Note, at time of submission the exe and app sometimes break the buttons on the main menu. No idea why, spent way too much time trying to figure it out...***
+
 ## Instructions
 W: Thrusters forward
 S: Brake
@@ -21,7 +26,6 @@ Mouse Right: Ship turn right
 
 Escape: Pause game/unpause game
 From the pause menu, you can resume, reset, and quit the game using the buttons. 
-***Note, at time of submission the exe and app sometimes break the buttons on the main menu. No idea why, spent way too much time trying to figure it out...***
 
 **Bonus: Try moving the mouse to one side, then quickly moving it back to the other side. If you get it right, you can do a little barrel roll!**
 
