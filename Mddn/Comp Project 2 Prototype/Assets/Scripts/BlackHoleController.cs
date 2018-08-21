@@ -20,6 +20,10 @@ public class BlackHoleController : MonoBehaviour {
         }
 	}
 
+    /// <summary>
+    /// If the player gets too close to this object, it will destroy them
+    /// </summary>
+    /// <returns>If the player is in destroying range or not</returns>
     bool isPlayerInDistance() {
         if(gameObject != null && player != null)
             return (Vector3.Distance(gameObject.transform.position, player.transform.position)<= 75);

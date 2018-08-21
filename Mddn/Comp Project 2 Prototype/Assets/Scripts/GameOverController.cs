@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameOverController : MonoBehaviour {
 
     public Canvas UI;
-
-    public void ResetLevel()
-    {
-        SceneManager.LoadScene("GameLevel");
-    }
-
+    
+    /// <summary>
+    /// Quits to the main menu, associated with button press.
+    /// </summary>
     public void QuitToMain()
     {
         SceneManager.LoadScene("MainMenu");

@@ -22,21 +22,21 @@ public class LevelController : MonoBehaviour {
 
 
 
-    // Use this for initialization
     void Start () {
-
+        //At the start of the game, fade the player's 'event panel' in to transparent
+        //from black.
         Color fadeToClear = new Color(1f, 1f, 1f, 0f);
         panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
 
         
 	}
 	
-	// Update is called once per frame
+
+    //LevelController handles the main game loop, in terms of wormhole spawning
 	void Update () {
 
-
-        if (portalCooldown <= 0)
-        {
+        //only fires new wormholes when the cooldown is ready
+        if (portalCooldown <= 0) {
             GetComponent<AudioSource>().Play();
             OpenPairedPortals();
         }
@@ -44,14 +44,14 @@ public class LevelController : MonoBehaviour {
             portalCooldown -= Time.deltaTime;
 
 
+        //if the player is destroyed somehow, the game will end
         if (player == null) {
-            Debug.Log("End the Game");
             EndTheGame();
-            Time.timeScale = 0.2f;
         }
 		
 	}
 
+    //destroys each of the portals in the scene currently. 
     void DestroyPortals() {
         foreach (GameObject a in portalPairs)
         {
@@ -59,6 +59,11 @@ public class LevelController : MonoBehaviour {
         }
     }
 
+
+    //Generates a random number of portal pairs in the scene, at random locations.
+    //Can generate between 1 and 3 pairs at a time
+    //links these wormholes to each other, the player, and the UI
+    //returns the list of all created portal pairs
     ArrayList OpenPairedPortals() {
 
         portalCooldown = timeBetweenPortals;
@@ -90,16 +95,21 @@ public class LevelController : MonoBehaviour {
     }
 
     void openLevel() {
-
+        //stub - interior level transfer
     }
 
+
+
+    //called when the player is destroyed somehow
+    //free the cursor, fade to black
+    //show the Game Over UI
     void EndTheGame() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        gameOverPanel.GetComponent<FadeIn>().PanelFade(new Color(0f, 0f, 0f, 255f), 2f, false); 
         gameUI.enabled = false;
         gameOverUI.enabled = true;
+        gameOverPanel.GetComponent<FadeIn>().PanelFade(new Color(0f, 0f, 0f, 255f), 2f, false);
         Time.timeScale = 0.2f;
 
     }

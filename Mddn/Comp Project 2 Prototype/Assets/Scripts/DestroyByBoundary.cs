@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyByBoundary : MonoBehaviour {
+    
 
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("Out of Bounds. Destroying.");
-        Destroy(other.gameObject);
-    }
-
+    /// <summary>
+    /// Destroys any object that collides with this object (boundary object)
+    /// </summary>
+    /// <param name="collision">Data on the collision that took place</param>
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Something collided");
-        //Destroy(collision.gameObject);
+        Destroy(collision.gameObject);
     }
 }

@@ -68,24 +68,6 @@
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
-    <Compile Include="Assets\PandaBehaviour\Core\PandaBehaviour.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\00_ChangeColor\Assets\MyCube.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\01_Move\Assets\Move.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\Computer.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\Dialogue.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\Player.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\AI.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\AIVision.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Bullet.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\BulletImpact.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\FollowCamera.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\HUD.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Patroller.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\ShooterGameController.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\TriggerType.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Unit.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\UnitExplosion.cs" />
-    <Compile Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\WaypointPath.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -135,17 +117,13 @@
     <Compile Include="Assets\Scene Objects\Skyboxes\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scene Objects\Skyboxes\Scripts\SmoothCameraOrbit.cs" />
     <Compile Include="Assets\Scripts\AI_No_BT.cs" />
-    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BlackHoleController.cs" />
     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
-    <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\GameOverController.cs" />
     <Compile Include="Assets\Scripts\LevelController.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\PauseController.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\PlayerCameraController.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\WeaponSystem.cs" />
     <Compile Include="Assets\Scripts\ScenicBody.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\bullet.cs" />
     <Compile Include="Assets\Scripts\Spaceflight Controls\CameraFlightFollow.cs" />
@@ -155,32 +133,24 @@
     <Compile Include="Assets\Scripts\SpawnController.cs" />
     <Compile Include="Assets\Scripts\Targetable.cs" />
     <Compile Include="Assets\Scripts\Teleport.cs" />
+    <Compile Include="Assets\Scripts\WeaponSystem.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Scripts\EditorLabel.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Scripts\EnableCameraDepthInForward.cs" />
     <Compile Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Scripts\SoftNormalsToVertexColor.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
-    <None Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Patroller.BT.txt" />
-    <None Include="Assets\PandaBehaviour\Examples\01_Move\Assets\Move.BT.txt" />
-    <None Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\TagDialogue.BT.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
-    <None Include="Assets\PandaBehaviour\Core\PandaBehaviour.xml" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
-    <None Include="Assets\PandaBehaviour\README.txt" />
     <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
-    <None Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Player.BT.txt" />
-    <None Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Sniper.BT.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
     <None Include="Assets\Shader Forge\TesterManual.txt" />
-    <None Include="Assets\PandaBehaviour\Examples\00_ChangeColor\Assets\ChangeColor.BT.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Readme.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
-    <None Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\Hunter.BT.txt" />
     <None Include="Assets\Scene Objects\BlackHole\Shader\Opaque.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
     <None Include="Assets\Scene Objects\Skyboxes\Nebula Skyboxes - Readme.txt" />
@@ -190,9 +160,7 @@
     <None Include="Assets\Scene Objects\BlackHole\Shader\OpaqueFresnel.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\VertexAnimation.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Blit.shader" />
-    <None Include="Assets\Scripts\EnemyAI\AI.BT.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
-    <None Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\AI.BT.lib.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
@@ -200,8 +168,6 @@
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\Refraction.shader" />
     <None Include="Assets\Scene Objects\BlackHole\Shader\AlphaBlend.shader" />
     <None Include="Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
-    <None Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\Computer.BT.txt" />
-    <None Include="Assets\PandaBehaviour\Examples\03_Shooter\Assets\GameController.BT.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\Parallax.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Common.cginc" />
@@ -218,7 +184,6 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\GrainGen.shader" />
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\TessellationDisplacement.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
-    <None Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\PlayTag.commented.BT.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
@@ -229,11 +194,9 @@
     <None Include="Assets\Shader Forge\Assets\ShaderForge\Example Assets\Shaders\CustomLighting.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
-    <None Include="Assets\PandaBehaviour\Examples\02_PlayTag\Assets\PlayTag.BT.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
-    <None Include="Assets\PandaBehaviour\ChangeLog.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -434,9 +397,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="PandaBehaviour">
-      <HintPath>C:/Users/Public/Documents/Unity Projects/Comp313 Project 2/Mddn/Comp Project 2 Prototype/Assets/PandaBehaviour/Core/PandaBehaviour.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/nicks/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

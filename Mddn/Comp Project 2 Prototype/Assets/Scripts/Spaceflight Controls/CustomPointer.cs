@@ -125,6 +125,12 @@ public class CustomPointer : MonoBehaviour {
 		}
 	}
 
+
+    //Toggle Pause
+    /// <summary>
+    /// Releases and shows the players cursor when the game is paused, 
+    /// Recaptures and hides the player mouse when game is unpaused.
+    /// </summary>
     public static void TogglePause() {
         if (PauseController.isGamePaused)
         {

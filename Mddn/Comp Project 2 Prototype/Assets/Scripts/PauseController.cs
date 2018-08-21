@@ -32,6 +32,9 @@ public class PauseController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Pauses the game. Enables the pause UI, freeses time, and releases the cursor from the customPointer.
+    /// </summary>
     void Pause()
     {
         pauseMenuUI.GetComponent<Canvas>().enabled = true;
@@ -40,6 +43,9 @@ public class PauseController : MonoBehaviour
         CustomPointer.TogglePause();
     }
 
+    /// <summary>
+    /// Unpauses the game. Disaables the pause UI, unfreezes time, and gives the cursor to the customPointer.
+    /// </summary>
     public void Resume()
     {
         pauseMenuUI.GetComponent<Canvas>().enabled = false;
@@ -48,11 +54,17 @@ public class PauseController : MonoBehaviour
         CustomPointer.TogglePause();
     }
 
+    /// <summary>
+    /// Reloads the game level
+    /// </summary>
     public void ResetLevel()
     {
         SceneManager.LoadScene("GameLevel");
     }
-
+    
+    /// <summary>
+    /// Loads the main menu level
+    /// </summary>
     public void QuitToMain()
     {
         SceneManager.LoadScene("MainMenu");

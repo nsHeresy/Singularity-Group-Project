@@ -199,12 +199,21 @@ public class PlayerFlightControl : MonoBehaviour
 	
 	}
 
+    //-----------------------------------------------------------------------------------------------------
+
+
+    /// <summary>
+    /// Driver for testing ship movement controls. When TAB is pressed, the speed of the ship resets to 0
+    /// </summary>
     void resetSpeeds() {
         //driver for testing ship movement
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
     }
 
+    /// <summary>
+    /// Driver for testing death particles/game over. When ` is pressed, the ship explodes.
+    /// </summary>
     public void driverSelfDestruct() {
         GetComponent<Targetable>().Damage(101);
     }
