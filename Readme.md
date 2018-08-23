@@ -43,6 +43,8 @@ The level controller also handles the main music and the 'wormhole spawn' music.
 ### How it works
 Each destructable entity in the scene has a 'Targetable' script which handles things like health, damage, death etc. Only the player can travel through wormholes - the wormholes are instantiated from a prefab, and linked only to their paired wormhole.
 Any attempts to enter the Singularity will kill the player - this uses a similar method to the detection for teleporting through the smaller wormholes, but with death, instead of teleportation...
+There are 5 'enemies' in the scene - they simply pick a random location in the level, then go towards that. There was not enough time in the prototype to implement actual AI behaviours.
+
 
 ## Technically challenging/interesting.
 With a fast paced space shooter that we are trying to achieve with this prototype, it is critical that the movement and controls of the ship 'feel good' to the player. To this end, developing a robust movement control system was one of the more technically challenging parts of the prototype to achieve. There is plenty of documentation on this issue, but a lot of it just didn't feel right. This particular problem was holding up development for over a week, before I found the spaceflight controls library, linked below. This library handles very well, and allows for a high degree of customisation. This customisation allowed me to tweak and balance the movement so that the player feels agile, powerful and awesome when flying around the level. The ship handles very well, it can perform tight turns and tricks, and the camera work feels great. 
