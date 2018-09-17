@@ -2,6 +2,8 @@
 Programmer: Nicholas Snellgrove
 Design Team mate: Vivian Chen
 
+### **Note - Please use Unity version 2018 1.6f1**
+
 ## Concept
 This prototype, named "Singularity", is set in space, at a small mining station which has fallen under attack from an unknown entity. 
 As the entity and its forces attack the station, the player must defend it at all costs, and find some way of stopping this singularity.
