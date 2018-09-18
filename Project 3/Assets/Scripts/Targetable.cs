@@ -15,6 +15,13 @@ public class Targetable : MonoBehaviour {
 
     public bool isDead = false;             //used to check conditions elsewhere in the program
 
+    private void Update()
+    {
+        if (isDead) {
+            StartCoroutine("Death");
+        }
+    }
+
 
     /// <summary>
     /// Damages the entity when they have a collision with another object.
@@ -25,7 +32,7 @@ public class Targetable : MonoBehaviour {
         float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
         Debug.Log(magnitude);
         Damage(magnitude * 3);
-        GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
+        //GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
 
     /// <summary>
@@ -48,7 +55,7 @@ public class Targetable : MonoBehaviour {
     IEnumerator Death() {
 
         isDead = true;
-        playDeathAnimation();
+        //playDeathAnimation();
         Destroy(entity);
         yield return null;
     }

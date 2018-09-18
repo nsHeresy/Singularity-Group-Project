@@ -17,8 +17,7 @@ public class SwarmBehaviour : MonoBehaviour {
         StartCoroutine("SwarmSteering");
     }
 
-    IEnumerator SwarmSteering()
-    {
+    IEnumerator SwarmSteering() {
         while (true)
         {
             if (inited)
@@ -35,6 +34,9 @@ public class SwarmBehaviour : MonoBehaviour {
                 {
                     body.velocity = body.velocity.normalized * minVelocity;
                 }
+
+                // check for upcoming obstacles
+
             }
 
             float waitTime = Random.Range(0.3f, 0.5f);
