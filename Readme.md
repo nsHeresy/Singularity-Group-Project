@@ -1,6 +1,6 @@
 # Comp313 Project 2: Game Prototype
-Programmer: Nicholas Snellgrove
-Design Team mate: Vivian Chen
+Programmers: Nicholas Snellgrove, Brandon Scott-Hill, Jack Porter
+Design Team mate: Vivian Chen, Justin Cage, Victor Francis
 
 ### **Note - Please use Unity version 2018 1.6f1**
 
