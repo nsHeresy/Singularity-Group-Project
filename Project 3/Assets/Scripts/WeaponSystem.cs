@@ -75,8 +75,20 @@ public class WeaponSystem : MonoBehaviour {
 
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
+		
+	    //https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
+	    //https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
+	    
+	    Debug.Log("Shoot");
 
-        if (Physics.Raycast(shootRay, out hit, range)) {
+	    var boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out hit, transform.rotation, 300f);
+	    if (boxCast)
+	    {
+		    Debug.Log("Hit : " + hit.collider.name);
+	    }
+
+
+	    if (Physics.Raycast(shootRay, out hit, range)) {
             gunLine.SetPosition(1, hit.point);
             ApplyHit(hit, damage);
         }
