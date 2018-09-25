@@ -7,7 +7,7 @@ public class SwarmController : MonoBehaviour {
     public float minVelocity = 5;
     public float maxVelocity = 20;
     public float randomness = 1;
-    public int flockSize = 3;
+    public int flockSize = 1;
     public GameObject prefab;
     public GameObject chasee;
 

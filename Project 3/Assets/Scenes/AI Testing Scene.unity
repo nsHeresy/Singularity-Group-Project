@@ -156,7 +156,7 @@ MonoBehaviour:
   minVelocity: 30
   maxVelocity: 100
   randomness: 2
-  flockSize: 100
+  flockSize: 2
   prefab: {fileID: 1442997600805316, guid: f5de22b7c4180b4428a88a7230cfc1f7, type: 2}
   chasee: {fileID: 164738088}
   flockCenter: {x: 0, y: 0, z: 0}
@@ -484,7 +484,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1202750596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 263, y: 57.62085, z: 222.00168}
+  m_LocalPosition: {x: 263, y: -276, z: 222.00168}
   m_LocalScale: {x: 540.6152, y: 574.23315, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 1775763604}
   - component: {fileID: 1775763603}
   - component: {fileID: 1775763602}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
