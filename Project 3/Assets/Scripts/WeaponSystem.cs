@@ -4,111 +4,98 @@ using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour {
 	
-	public GameObject ship;
+	public Camera cam;
 
-    public GameObject impactEffect;
-    public AudioClip impactNoise;
+    public GameObject ImpactEffect;
+    public AudioClip ImpactNoise;
 	
 	//range of the weapon
 	//used externally for targeting reticule
-	public static int range = 300;
-	public int damage = 10;
+	public static int Range = 300;
+	public int Damage = 10;
 
     //weapon vars
-    LineRenderer gunLine;
-    AudioSource gunAudio;
-    Light gunLight;
+    private LineRenderer _gunLine;
+    private AudioSource _gunAudio;
+    private Light _gunLight;
 
     //utils
-    float timer;
-    float timeBetweenShots = 0.1f;
-    float effectDisplayTime = 0.2f;
+    private float _timer;
+    private float _timeBetweenShots = 0.1f;
+    private float _effectDisplayTime = 0.2f;
 
     private void Awake() {
 
-        gunLine = GetComponent<LineRenderer>();
-        gunAudio = GetComponent<AudioSource>();
-        gunLight = GetComponent<Light>();
+        _gunLine = GetComponent<LineRenderer>();
+        _gunAudio = GetComponent<AudioSource>();
+        _gunLight = GetComponent<Light>();
 
     }
 
     void Update () {
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-		if(Input.GetButton("Fire1") && timer >= timeBetweenShots && !PauseController.isGamePaused){
+		if(Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused){
 			Shoot();
 		}
 
-        if (timer >= timeBetweenShots * effectDisplayTime) {
+        if (_timer >= _timeBetweenShots * _effectDisplayTime) {
             DisableEffects();
         }
 	}
-	
-	
-	///////////
-	//UTILITY//
-	///////////
-	
-	public bool IsObjectInRange() {
-		//stub for hit/range detection - implement later
-		return true;
-	}
 
-    public void SwitchWeapons() {
+    public void SwitchWeapons() 
+    {
         //stub
     }
 
+	private void OnGUI()
+	{
+		var hits = Physics.OverlapSphere(transform.position, Range, 11);
+		foreach (var hit in hits)
+		{
+			var ai = hit.GetComponent(typeof(Targetable)) as Targetable;
+			if (ai == null) continue;
+			var pos = cam.WorldToScreenPoint(ai.transform.position);
+			GUI.Box(new Rect(pos.x, pos.y, 20f, 20f), "hello");
+		}
+	}
 
-    public void Shoot() {
-        timer = 0f;
 
-        Ray shootRay = new Ray();
-        RaycastHit hit = new RaycastHit();
+	public void Shoot() {
+		_timer = 0f;
+
+		Ray shootRay = new Ray();
+		RaycastHit hit = new RaycastHit();
 
 
-        gunLight.enabled = true;
-        gunLine.enabled = true;
+		_gunLight.enabled = true;
+		_gunLine.enabled = true;
 
-        gunAudio.Play();
+		_gunAudio.Play();
 
-        gunLine.SetPosition(0, transform.position);
+		_gunLine.SetPosition(0, transform.position);
 
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
+		shootRay.origin = transform.position;
+		shootRay.direction = transform.forward;
 		
-	    //https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
-	    //https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
+		//https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
+		//https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
 	    
-	    Debug.Log("Shoot");
 
-	    var boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out hit, transform.rotation, 300f);
-	    if (boxCast)
-	    {
-		    Debug.Log("Hit : " + hit.collider.name);
-	    }
-
-
-	    if (Physics.Raycast(shootRay, out hit, range)) {
-            gunLine.SetPosition(1, hit.point);
-            ApplyHit(hit, damage);
-        }
-
-        else {
-            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-        }
 	}
 
 	public void ApplyHit(RaycastHit hit, int damage) {
-        GameObject.Instantiate(impactEffect, hit.point, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(impactNoise, hit.point);
-        Targetable t = hit.collider.gameObject.GetComponent<Targetable>();
+        Instantiate(ImpactEffect, hit.point, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(ImpactNoise, hit.point);
+        var t = hit.collider.gameObject.GetComponent<Targetable>();
         if (t != null)
             t.Damage(damage);
 	}
 
     public void DisableEffects() {
-        gunLight.enabled = false;
-        gunLine.enabled = false;
-        gunLine.SetPosition(1, transform.position + transform.forward * range); 
+        _gunLight.enabled = false;
+        _gunLine.enabled = false;
+        _gunLine.SetPosition(1, transform.position + transform.forward * Range); 
     }
 }
