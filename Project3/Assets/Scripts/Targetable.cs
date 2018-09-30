@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Targetable : MonoBehaviour {
 
-
-    public GameObject entity;               //the physical model of this entity
     public float health;                    //how much health does it have
 
     //Animations and Particles
@@ -56,7 +54,7 @@ public class Targetable : MonoBehaviour {
 
         isDead = true;
         //playDeathAnimation();
-        Destroy(entity);
+        Object.Destroy(gameObject);
         yield return null;
     }
 
@@ -65,7 +63,7 @@ public class Targetable : MonoBehaviour {
     /// 
     /// </summary>
     void playDeathAnimation() {
-        GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(explNoise,entity.transform.position,1f);
+        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(explNoise, transform.position,1f);
     }
 }
