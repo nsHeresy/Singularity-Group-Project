@@ -26,14 +26,14 @@ public class SwarmBehaviour : MonoBehaviour {
         {
             if (inited)
             {
-                Vector3 nearestCollision = CheckIfCollisionImminent();
-                if (nearestCollision != transform.position)
-                {
+                //Vector3 nearestCollision = CheckIfCollisionImminent();
+                //if (nearestCollision != transform.position)
+                //{
 
-                    Debug.Log("Something to collide with");
-                    DoCollisionAvoidance(nearestCollision);
+                //    Debug.Log("Something to collide with");
+                //    DoCollisionAvoidance(nearestCollision);
                     
-                }
+                //}
                 
                 body.velocity = body.velocity + Calc() * Time.deltaTime;
                 EnforceSpeedBounds();
