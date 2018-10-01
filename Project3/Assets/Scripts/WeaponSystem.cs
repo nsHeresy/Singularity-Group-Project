@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class WeaponSystem : MonoBehaviour {
-	
-	public Camera cam;
-
+public class WeaponSystem : MonoBehaviour
+{
     public GameObject ImpactEffect;
     public AudioClip ImpactNoise;
-	
-	//range of the weapon
-	//used externally for targeting reticule
-	public static int Range = 300;
-	public int Damage = 10;
+
+    //range of the weapon
+    //used externally for targeting reticule
+    public static int Range = 300;
+    public int Damage = 10;
 
     //weapon vars
     private LineRenderer _gunLine;
@@ -24,78 +23,150 @@ public class WeaponSystem : MonoBehaviour {
     private float _timeBetweenShots = 0.1f;
     private float _effectDisplayTime = 0.2f;
 
-    private void Awake() {
+    public Image OnScreenSprite;
+    public Image OffScreenSprite;
 
+    private Image[] onScreenSprites;
+
+    private Image[] offScreenSprites;
+    //public List<GameObject> objects;
+
+    //public Vector3 objectPoolPos;
+    //Vector3 screenCenter = new Vector3(Screen.width,Screen.height,0)*.5f;
+
+    void Start()
+    {
+//		onScreenSprites = new Image[objects.Count];
+//		offScreenSprites = new Image[objects.Count];
+//		Debug.Log ("Center: " + screenCenter);
+//		for(var i = 0; i < objects.Count; i++)
+//		{
+//			onScreenSprites[i] = Instantiate(OnScreenSprite,objectPoolPos,transform.rotation);
+//			offScreenSprites[i] = Instantiate(OffScreenSprite,objectPoolPos, transform.rotation);
+//		}
+    }
+
+    private void Awake()
+    {
         _gunLine = GetComponent<LineRenderer>();
         _gunAudio = GetComponent<AudioSource>();
         _gunLight = GetComponent<Light>();
-
     }
 
-    void Update () {
+    void Update()
+    {
+        PlaceIndicators();
         _timer += Time.deltaTime;
+        if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused)
+        {
+            Shoot();
+        }
 
-		if(Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused){
-			Shoot();
-		}
-
-        if (_timer >= _timeBetweenShots * _effectDisplayTime) {
+        if (_timer >= _timeBetweenShots * _effectDisplayTime)
+        {
             DisableEffects();
         }
-	}
+    }
 
-    public void SwitchWeapons() 
+    void PlaceIndicators()
+    {
+        var objects = FindObjectsOfType(typeof(Targetable)) as GameObject[];
+
+        Debug.Log(objects);
+
+//        foreach (var go in objects)
+//        {
+//            Vector3 screenpos = Camera.main.WorldToScreenPoint(go.transform.position);
+//
+//            //if onscreen
+//            if (screenpos.z > 0 && screenpos.x < Screen.width && screenpos.x > 0 && screenpos.y < Screen.height &&
+//                screenpos.y > 0)
+//            {
+//                OnScreenSprite.rectTransform.position = screenpos;
+//                //Debug.Log("OnScreen: " + screenpos);
+//            }
+//            else
+//            {
+//                PlaceOffscreen(screenpos);
+//            }
+//        }
+    }
+
+
+    void PlaceOffscreen(Vector3 screenpos)
+    {
+        float x = screenpos.x;
+        float y = screenpos.y;
+        float offset = 10;
+
+        if (screenpos.z < 0)
+        {
+            screenpos = -screenpos;
+        }
+
+        if (screenpos.x > Screen.width)
+        {
+            x = Screen.width - offset;
+        }
+
+        if (screenpos.x < 0)
+        {
+            x = offset;
+        }
+
+        if (screenpos.y > Screen.height)
+        {
+            y = Screen.height - offset;
+        }
+
+        if (screenpos.y < 0)
+        {
+            y = offset;
+        }
+
+        OffScreenSprite.rectTransform.position = new Vector3(x, y, 0);
+    }
+
+    public void SwitchWeapons()
     {
         //stub
     }
 
-	private void OnGUI()
-	{
-		var hits = Physics.OverlapSphere(transform.position, Range, 11);
-		foreach (var hit in hits)
-		{
-			var ai = hit.GetComponent(typeof(Targetable)) as Targetable;
-			if (ai == null) continue;
-			var pos = cam.WorldToScreenPoint(ai.transform.position);
-			GUI.Box(new Rect(pos.x, pos.y, 20f, 20f), "hello");
-		}
-	}
+    public void Shoot()
+    {
+        _timer = 0f;
+
+        Ray shootRay = new Ray();
+        RaycastHit hit = new RaycastHit();
 
 
-	public void Shoot() {
-		_timer = 0f;
+        _gunLight.enabled = true;
+        _gunLine.enabled = true;
 
-		Ray shootRay = new Ray();
-		RaycastHit hit = new RaycastHit();
+        _gunAudio.Play();
 
+        _gunLine.SetPosition(0, transform.position);
 
-		_gunLight.enabled = true;
-		_gunLine.enabled = true;
+        shootRay.origin = transform.position;
+        shootRay.direction = transform.forward;
 
-		_gunAudio.Play();
+        //https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
+        //https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
+    }
 
-		_gunLine.SetPosition(0, transform.position);
-
-		shootRay.origin = transform.position;
-		shootRay.direction = transform.forward;
-		
-		//https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
-		//https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
-	    
-
-	}
-
-	public void ApplyHit(RaycastHit hit, int damage) {
+    public void ApplyHit(RaycastHit hit, int damage)
+    {
         Instantiate(ImpactEffect, hit.point, Quaternion.identity);
         AudioSource.PlayClipAtPoint(ImpactNoise, hit.point);
         var t = hit.collider.gameObject.GetComponent<Targetable>();
         if (t != null)
             t.Damage(damage);
-	}
+    }
 
-    public void DisableEffects() {
+    public void DisableEffects()
+    {
         _gunLight.enabled = false;
         _gunLine.enabled = false;
-        _gunLine.SetPosition(1, transform.position + transform.forward * Range); 
+        _gunLine.SetPosition(1, transform.position + transform.forward * Range);
     }
 }
