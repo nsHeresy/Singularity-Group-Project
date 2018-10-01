@@ -133,8 +133,7 @@ ExportedObj/
 *.opendb
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
+
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
@@ -227,7 +226,6 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
 *.obj
 *.iobj
 *.pch
