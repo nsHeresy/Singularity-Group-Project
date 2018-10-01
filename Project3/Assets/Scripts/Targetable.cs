@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Targetable : MonoBehaviour {
 
-
-    public GameObject entity;               //the physical model of this entity
     public float health;                    //how much health does it have
 
     //Animations and Particles
@@ -29,8 +27,9 @@ public class Targetable : MonoBehaviour {
     /// </summary>
     /// <param name="collision"> data on the collision which has just happened</param>
     private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.layer == gameObject.layer)
+            return;
         float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
-        Debug.Log(magnitude);
         Damage(magnitude * 3);
         //GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
@@ -56,7 +55,8 @@ public class Targetable : MonoBehaviour {
 
         isDead = true;
         //playDeathAnimation();
-        Destroy(entity);
+        
+        Object.Destroy(gameObject);
         yield return null;
     }
 
@@ -65,7 +65,7 @@ public class Targetable : MonoBehaviour {
     /// 
     /// </summary>
     void playDeathAnimation() {
-        GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(explNoise,entity.transform.position,1f);
+        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(explNoise, transform.position,1f);
     }
 }

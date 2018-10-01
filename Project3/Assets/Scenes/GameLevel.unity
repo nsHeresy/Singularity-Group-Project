@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.023314744, g: 0.009073823, b: 0.03032325, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3836,6 +3836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1122514351}
   Wormhole: {fileID: 1689789943230208, guid: c53331f520bcad447b23ffc4813ba5a6, type: 2}
+  Swarm: {fileID: 0}
   panel: {fileID: 1309762412}
   gameOverPanel: {fileID: 1838138244}
   gameOverUI: {fileID: 801513897}
@@ -3946,7 +3947,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b9260405c8d72be46bbfb40ebd6d2a07, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

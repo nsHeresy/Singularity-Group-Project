@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33667557286448010}
   - component: {fileID: 23743116017130648}
   - component: {fileID: 136415976211270776}
-  - component: {fileID: 114345802744060236}
   - component: {fileID: 54955060264470056}
-  - component: {fileID: 114492172102035518}
+  - component: {fileID: 114293063483047348}
+  - component: {fileID: 114541283577242638}
   m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1442997600805316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 190.4447, y: 408.71625, z: 498.15814}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 32466c7b4cba4844f92096eaa84cb838, type: 2}
+  - {fileID: 2100000, guid: d89d6d135068ae54da6ec71c060e7dc7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114345802744060236
+--- !u!114 &114293063483047348
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,10 +110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1442997600805316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23996e90b1c79a84f9e9ed1f695dfe56, type: 3}
+  m_Script: {fileID: 11500000, guid: b70553ef35f095248a01475472389407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114492172102035518
+--- !u!114 &114541283577242638
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -124,9 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 1442997600805316}
   health: 1
-  explosion: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b,
+  explosion: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9,
     type: 2}
   explNoise: {fileID: 0}
   isDead: 0
