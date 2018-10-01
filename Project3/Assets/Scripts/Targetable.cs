@@ -27,6 +27,9 @@ public class Targetable : MonoBehaviour {
     /// </summary>
     /// <param name="collision"> data on the collision which has just happened</param>
     private void OnCollisionEnter(Collision collision) {
+
+        Debug.Log(collision.gameObject.name);
+
         if (collision.gameObject.layer == gameObject.layer)
             return;
         float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
