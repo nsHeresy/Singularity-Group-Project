@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour {
 
     public GameObject player;
     public GameObject Wormhole;
+    public GameObject Swarm;
 
     public Image panel;
     public Image gameOverPanel;
@@ -14,9 +15,13 @@ public class LevelController : MonoBehaviour {
     public Canvas gameOverUI;
     public Canvas gameUI;
 
+    private GameObject activeSwarm;
+
     int waveCount = 0;
     float timeBetweenPortals = 30f;
     float portalCooldown = 0f;
+
+    bool isInited = false;
 
     ArrayList portalPairs;
 
@@ -25,9 +30,10 @@ public class LevelController : MonoBehaviour {
     void Start () {
         //At the start of the game, fade the player's 'event panel' in to transparent
         //from black.
-        Color fadeToClear = new Color(1f, 1f, 1f, 0f);
-        panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
 
+        //Color fadeToClear = new Color(1f, 1f, 1f, 0f);
+        //panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
+        StartNewSwarm();
         
 	}
 	
@@ -35,20 +41,29 @@ public class LevelController : MonoBehaviour {
     //LevelController handles the main game loop, in terms of wormhole spawning
 	void Update () {
 
-        //only fires new wormholes when the cooldown is ready
-        if (portalCooldown <= 0) {
-            GetComponent<AudioSource>().Play();
-            OpenPairedPortals();
-        }
-        else
-            portalCooldown -= Time.deltaTime;
+        if (isInited)
+        {
+            //only fires new wormholes when the cooldown is ready
+            if (portalCooldown <= 0)
+            {
+                GetComponent<AudioSource>().Play();
+                OpenPairedPortals();
+            }
+            else
+                portalCooldown -= Time.deltaTime;
 
 
-        //if the player is destroyed somehow, the game will end
-        if (player == null) {
-            EndTheGame();
+            //if the player is destroyed somehow, the game will end
+            if (player == null)
+            {
+                EndTheGame();
+            }
         }
-		
+
+        if (activeSwarm.GetComponent<SwarmController>().IsCleared()) {
+            Debug.Log("Okay");
+            //StartNewSwarm();
+        }
 	}
 
     //destroys each of the portals in the scene currently. 
@@ -112,5 +127,24 @@ public class LevelController : MonoBehaviour {
         gameOverPanel.GetComponent<FadeIn>().PanelFade(new Color(0f, 0f, 0f, 255f), 2f, false);
         Time.timeScale = 0.2f;
 
+    }
+
+    public void StartNewSwarm() {
+        //make sure the swarm is dead and done
+        if (activeSwarm != null)
+        {
+            activeSwarm.SetActive(false);
+            Destroy(activeSwarm);
+            activeSwarm = null;
+        }
+
+        //make a new swarm
+        activeSwarm = Instantiate(Swarm, transform);
+        activeSwarm.GetComponent<SwarmController>().StartSwarm(player);
+    }
+    
+
+    public SwarmController GetActiveSwarm() {
+        return activeSwarm.GetComponent<SwarmController>();
     }
 }

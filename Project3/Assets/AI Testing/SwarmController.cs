@@ -15,10 +15,60 @@ public class SwarmController : MonoBehaviour {
     public Vector3 flockVelocity;
 
     private GameObject[] entities;
+    private Collider swarmBound;
+    private LevelController levelController;
 
-    void Start() {
+    private bool hasCleared = false;
 
-        Collider swarmBound = GetComponent<Collider>();
+    public void StartSwarm(GameObject target) {
+
+        chasee = target;
+
+        swarmBound = GetComponent<Collider>();
+
+        levelController = GameObject.Find("Level Controller").GetComponent<LevelController>();
+
+        GenerateSwarm();
+
+
+    }
+
+    void Update()
+    {
+        Vector3 theCenter = Vector3.zero;
+        Vector3 theVelocity = Vector3.zero;
+
+        if (hasCleared)
+            return;
+
+        int deadCount = 0;
+        for (int n = 0; n < entities.Length; n++)
+        {
+            GameObject entity = entities[n];
+            if (entity != null && (entity as Object) != null)
+            {
+
+                theCenter = theCenter + entity.transform.localPosition;
+                theVelocity = theVelocity + entity.GetComponent<Rigidbody>().velocity;
+            }
+            else {
+                entity = null;
+                deadCount++;
+            }
+        }
+
+        if(deadCount == entities.Length)
+        {
+            hasCleared = true;
+            entities = null;
+            return;
+        }
+
+        flockCenter = theCenter / (flockSize);
+        flockVelocity = theVelocity / (flockSize);
+    }
+
+    void GenerateSwarm() {
 
         entities = new GameObject[flockSize];
         for (var i = 0; i < flockSize; i++)
@@ -37,18 +87,11 @@ public class SwarmController : MonoBehaviour {
         }
     }
 
-    void Update()
-    {
-        Vector3 theCenter = Vector3.zero;
-        Vector3 theVelocity = Vector3.zero;
+    public bool IsCleared() {
+        return this.hasCleared;
+    }
 
-        foreach (GameObject entity in entities)
-        {
-            theCenter = theCenter + entity.transform.localPosition;
-            theVelocity = theVelocity + entity.GetComponent<Rigidbody>().velocity;
-        }
-
-        flockCenter = theCenter / (flockSize);
-        flockVelocity = theVelocity / (flockSize);
+    public GameObject[] getEntities() {
+        return entities;
     }
 }
