@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33667557286448010}
   - component: {fileID: 23743116017130648}
   - component: {fileID: 136415976211270776}
+  - component: {fileID: 114345802744060236}
   - component: {fileID: 54955060264470056}
-  - component: {fileID: 114301948299778898}
-  - component: {fileID: 114092923046023230}
+  - component: {fileID: 114492172102035518}
   m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 66f369c475ad474449b6ce195a8c42cb, type: 2}
+  - {fileID: 2100000, guid: 32466c7b4cba4844f92096eaa84cb838, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114092923046023230
+--- !u!114 &114345802744060236
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,24 +110,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1442997600805316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98cc72836c4859459b31573c64c18c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 23996e90b1c79a84f9e9ed1f695dfe56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114492172102035518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442997600805316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 1442997600805316}
   health: 1
-  explosion: {fileID: 0}
+  explosion: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 2}
   explNoise: {fileID: 0}
   isDead: 0
---- !u!114 &114301948299778898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1442997600805316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 427ff6e80d3027b4390c0e381d0e315c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &136415976211270776
 CapsuleCollider:
   m_ObjectHideFlags: 1
