@@ -8,6 +8,8 @@ public class GuidedRocket : MonoBehaviour {
     Rigidbody body;
     public ParticleSystem explodeParticle;
 
+    public ParticleSystem explosion;
+
     //visual components
     
 
@@ -16,7 +18,8 @@ public class GuidedRocket : MonoBehaviour {
     private float timeout = 5;      //seconds before rocket explodes automatically
     private float explodeRadius = 5;    //radius of explosion
     private float explodeDamage = 50;   //damage of explosion
-    private float explodeDuration = 4f; //time for explosion animation to run
+
+    private bool exploding = false;
 
 
     private void Start() {
@@ -26,10 +29,16 @@ public class GuidedRocket : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        Explode();
+        StartCoroutine("Explode");
     }
 
     void LateUpdate () {
+
+        if (exploding) {
+            body.velocity = transform.forward.normalized * 0;
+            return;
+        }
+        
         if (target != null) {
 
             transform.LookAt(target.transform);
@@ -38,10 +47,11 @@ public class GuidedRocket : MonoBehaviour {
         transform.Translate(transform.forward * speed * Time.deltaTime);
     }
 
-    void Explode() {
+    IEnumerator Explode() {
 
-        //play animation
-        explodeParticle.Play();
+        exploding = true;
+
+        Destroy(GetComponent<Light>());
 
         //deal damage, not to player
         var enemiesInRange = Physics.OverlapSphere(transform.position, explodeRadius, 9);
@@ -53,14 +63,24 @@ public class GuidedRocket : MonoBehaviour {
         }
 
         //destroy the rocket
-        //Destroy(explodeParticle, explodeDuration);
-        var explosion = GameObject.Instantiate(explodeParticle, transform.position, Quaternion.identity);
-        Destroy(explosion, explodeDuration);
+        explosion = Instantiate(explodeParticle, transform.position, Quaternion.identity);
+        explosion.transform.parent = transform;
+        
+        float totalDuration = explosion.main.duration;
+        yield return new WaitForSeconds(totalDuration);
+
+
+        explosion.Stop();
+        DestroyImmediate(explosion);
+        explosion = null;
+
         Destroy(gameObject);
+
+        yield return null;
     }
 
     IEnumerator TimeOut() {
         yield return new WaitForSeconds(timeout);
-        Explode();
+        StartCoroutine("Explode");
     }
 }

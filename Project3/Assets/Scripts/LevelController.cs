@@ -9,6 +9,8 @@ public class LevelController : MonoBehaviour {
     public GameObject Wormhole;
     public GameObject Swarm;
 
+    public GameObject sceneBase;
+
     public Image panel;
     public Image gameOverPanel;
 
@@ -31,9 +33,11 @@ public class LevelController : MonoBehaviour {
         //At the start of the game, fade the player's 'event panel' in to transparent
         //from black.
 
-        //Color fadeToClear = new Color(1f, 1f, 1f, 0f);
-        //panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
+        Color fadeToClear = new Color(1f, 1f, 1f, 0f);
+        panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
         StartNewSwarm();
+
+        //isInited = true;
         
 	}
 	
@@ -140,7 +144,7 @@ public class LevelController : MonoBehaviour {
 
         //make a new swarm
         activeSwarm = Instantiate(Swarm, transform);
-        activeSwarm.GetComponent<SwarmController>().StartSwarm(player);
+        activeSwarm.GetComponent<SwarmController>().StartSwarm(sceneBase);
     }
     
 

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minVelocity: 50
   maxVelocity: 100
-  randomness: 1
+  randomness: 2
   flockSize: 100
   prefab: {fileID: 1442997600805316, guid: c2c2e00ddea49b24eb9f7b2c197c8a6e, type: 2}
   chasee: {fileID: 0}
