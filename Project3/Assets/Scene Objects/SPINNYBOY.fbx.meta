@@ -1,0 +1,245 @@
+fileFormatVersion: 2
+guid: 10e1c85cff1e24b28aa5bfdad5400cf0
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Bottom_Half
+    100002: bottom_mid_section_spin
+    100004: cylinder_main
+    100006: Mid_section
+    100008: midsection_main
+    100010: pCylinder1
+    100012: pCylinder1 1
+    100014: pCylinder2
+    100016: pCylinder2 1
+    100018: pCylinder3
+    100020: polySurface10
+    100022: polySurface7
+    100024: polySurface8
+    100026: polySurface9
+    100028: small_bottomsection_whole
+    100030: Small_mid_section
+    100032: small_midsection_whole
+    100034: spin_section
+    100036: spin_section_2
+    100038: //RootNode
+    100040: Top_Half
+    100042: top_section_spin
+    100044: unattached_group
+    100046: UVD_cube
+    100048: UVD_cube1
+    100050: UVD_cube2
+    100052: UVD_cube3
+    100054: UVD_cube4
+    100056: UVD_cube5
+    100058: UVD_cube6
+    100060: UVD_cube7
+    400000: Bottom_Half
+    400002: bottom_mid_section_spin
+    400004: cylinder_main
+    400006: Mid_section
+    400008: midsection_main
+    400010: pCylinder1
+    400012: pCylinder1 1
+    400014: pCylinder2
+    400016: pCylinder2 1
+    400018: pCylinder3
+    400020: polySurface10
+    400022: polySurface7
+    400024: polySurface8
+    400026: polySurface9
+    400028: small_bottomsection_whole
+    400030: Small_mid_section
+    400032: small_midsection_whole
+    400034: spin_section
+    400036: spin_section_2
+    400038: //RootNode
+    400040: Top_Half
+    400042: top_section_spin
+    400044: unattached_group
+    400046: UVD_cube
+    400048: UVD_cube1
+    400050: UVD_cube2
+    400052: UVD_cube3
+    400054: UVD_cube4
+    400056: UVD_cube5
+    400058: UVD_cube6
+    400060: UVD_cube7
+    2100000: lambert1
+    2300000: cylinder_main
+    2300002: midsection_main
+    2300004: pCylinder1
+    2300006: pCylinder1 1
+    2300008: pCylinder2
+    2300010: pCylinder2 1
+    2300012: pCylinder3
+    2300014: polySurface10
+    2300016: polySurface7
+    2300018: polySurface8
+    2300020: polySurface9
+    2300022: Small_mid_section
+    2300024: spin_section
+    2300026: spin_section_2
+    2300028: UVD_cube
+    2300030: UVD_cube1
+    2300032: UVD_cube2
+    2300034: UVD_cube3
+    2300036: UVD_cube4
+    2300038: UVD_cube5
+    2300040: UVD_cube6
+    2300042: UVD_cube7
+    3300000: cylinder_main
+    3300002: midsection_main
+    3300004: pCylinder1
+    3300006: pCylinder1 1
+    3300008: pCylinder2
+    3300010: pCylinder2 1
+    3300012: pCylinder3
+    3300014: polySurface10
+    3300016: polySurface7
+    3300018: polySurface8
+    3300020: polySurface9
+    3300022: Small_mid_section
+    3300024: spin_section
+    3300026: spin_section_2
+    3300028: UVD_cube
+    3300030: UVD_cube1
+    3300032: UVD_cube2
+    3300034: UVD_cube3
+    3300036: UVD_cube4
+    3300038: UVD_cube5
+    3300040: UVD_cube6
+    3300042: UVD_cube7
+    4300000: polySurface10
+    4300002: pCylinder1
+    4300004: UVD_cube
+    4300006: UVD_cube1
+    4300008: polySurface9
+    4300010: polySurface7
+    4300012: pCylinder2
+    4300014: midsection_main
+    4300016: cylinder_main
+    4300018: UVD_cube2
+    4300020: UVD_cube3
+    4300022: Small_mid_section
+    4300024: pCylinder1
+    4300026: UVD_cube4
+    4300028: UVD_cube5
+    4300030: spin_section
+    4300032: spin_section_2
+    4300034: pCylinder2
+    4300036: UVD_cube6
+    4300038: UVD_cube7
+    4300040: pCylinder3
+    4300042: polySurface8
+    7400000: SPINNYBOY
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SPINNYBOY
+      takeName: SPINNYBOY
+      firstFrame: 1
+      lastFrame: 179
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
