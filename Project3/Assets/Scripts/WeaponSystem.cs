@@ -9,7 +9,8 @@ public class WeaponSystem : MonoBehaviour
     public GameObject ImpactEffect;
     public AudioClip ImpactNoise;
 
-    //public GameObject targeter;
+    public GameObject targeter;
+    public GameObject target;
 
     //range of the weapon
     //used externally for targeting reticule
@@ -96,10 +97,9 @@ public class WeaponSystem : MonoBehaviour
 
         Debug.Log(transform.forward);
 
-        //Quaternion q = Quaternion.FromToRotation(transform.position, targeter.transform.position);
 
-        //GameObject Rocket = GameObject.Instantiate(rocketPrefab, transform.position, q);
-        //Rocket.GetComponent<GuidedRocket>().target = this.target;
+        GameObject rocket = Instantiate(rocketPrefab, transform.position, transform.rotation);
+        rocket.GetComponent<GuidedRocket>().target = target;
     }
 
     public void ApplyHit(RaycastHit hit, int damage)
