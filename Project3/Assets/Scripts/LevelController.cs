@@ -11,11 +11,11 @@ public class LevelController : MonoBehaviour {
 
     public GameObject sceneBase;
 
-    public Image panel;
-    public Image gameOverPanel;
+    //public Image panel;
+    //public Image gameOverPanel;
 
-    public Canvas gameOverUI;
-    public Canvas gameUI;
+    //public Canvas gameOverUI;
+    //public Canvas gameUI;
 
     private GameObject activeSwarm;
 
@@ -34,7 +34,7 @@ public class LevelController : MonoBehaviour {
         //from black.
 
         Color fadeToClear = new Color(1f, 1f, 1f, 0f);
-        panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
+        //panel.GetComponent<FadeIn>().PanelFade(fadeToClear, 3f, false);
         StartNewSwarm();
 
         //isInited = true;
@@ -100,11 +100,11 @@ public class LevelController : MonoBehaviour {
 
             portalA.GetComponent<Teleport>().sisterWormhole = portalB;
             portalA.GetComponent<Teleport>().player = player;
-            portalA.GetComponent<Teleport>().panel = panel;
+            //portalA.GetComponent<Teleport>().panel = panel;
 
             portalB.GetComponent<Teleport>().sisterWormhole = portalA;
             portalB.GetComponent<Teleport>().player = player;
-            portalB.GetComponent<Teleport>().panel = panel;
+            //portalB.GetComponent<Teleport>().panel = panel;
 
             portalPairs.Add(portalA);
             portalPairs.Add(portalB);
@@ -126,9 +126,9 @@ public class LevelController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        gameUI.enabled = false;
-        gameOverUI.enabled = true;
-        gameOverPanel.GetComponent<FadeIn>().PanelFade(new Color(0f, 0f, 0f, 255f), 2f, false);
+        //gameUI.enabled = false;
+        //gameOverUI.enabled = true;
+        //gameOverPanel.GetComponent<FadeIn>().PanelFade(new Color(0f, 0f, 0f, 255f), 2f, false);
         Time.timeScale = 0.2f;
 
     }
