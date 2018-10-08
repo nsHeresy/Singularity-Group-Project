@@ -1,74 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Targetable : MonoBehaviour {
 
-    public float health;                    //how much health does it have
+    public float Health;
 
-    //Animations and Particles
-    public ParticleSystem explosion;        //explosion to trigger when this entity dies
-    public AudioClip explNoise;             //sound to play when this entity dies
+    public ParticleSystem Explosion; 
+    public AudioClip ExplosionNoise;
+
+    public GameObject TargetPrefab;
+    private Image _targetBox;
 
 
-    public bool isDead = false;             //used to check conditions elsewhere in the program
+    public bool IsDead = false;
+
+    private void Start()
+    {
+        _targetBox = Instantiate(TargetPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
+        
+    }
 
     private void Update()
     {
-        if (isDead) {
+        
+        if (IsDead) {
             StartCoroutine("Death");
+            return;
         }
+
+        _targetBox.transform.position = Camera.main.WorldToScreenPoint(transform.position);
     }
 
-
-    /// <summary>
-    /// Damages the entity when they have a collision with another object.
-    /// Damage is relative to the speed of the collision.
-    /// </summary>
-    /// <param name="collision"> data on the collision which has just happened</param>
     private void OnCollisionEnter(Collision collision) {
-
-        Debug.Log(collision.gameObject.name);
 
         if (collision.gameObject.layer == gameObject.layer)
             return;
-        float magnitude = GetComponent<Rigidbody>().velocity.magnitude;
+        var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
         Damage(magnitude * 3);
         //GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
 
-    /// <summary>
-    /// Damages the entity by a certain amount. If the entity is dead, starts the Death coroutine.
-    /// </summary>
-    /// <param name="amount">How much damage to take</param>
+
     public void Damage(float amount) {
-        health -= amount;
-        if (health <= 0) {
-            StartCoroutine(Death());
-        }
+        Health -= amount;
+        if (Health <= 0) StartCoroutine(Death());
     }
 
-    /// <summary>
-    /// Coroutine called when entity dies. 
-    /// Does not finish until the playDeathAnimation is complete
-    /// Destroys the entity when it is complete
-    /// </summary>
-    /// <returns>Nothing</returns>
-    IEnumerator Death() {
+    private IEnumerator Death() {
 
-        isDead = true;
+        IsDead = true;
         //playDeathAnimation();
         
-        Object.Destroy(gameObject);
+        Destroy(gameObject);
         yield return null;
     }
 
-    /// <summary>
-    /// Instantiates an explosion at the location of this entity, and plays the explosion sound at this location also. 
-    /// 
-    /// </summary>
-    void playDeathAnimation() {
-        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(explNoise, transform.position,1f);
-    }
+//    void playDeathAnimation() {
+//        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+//        AudioSource.PlayClipAtPoint(explNoise, transform.position,1f);
+//    }
 }
