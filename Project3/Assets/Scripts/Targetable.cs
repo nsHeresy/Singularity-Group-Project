@@ -26,13 +26,19 @@ public class Targetable : MonoBehaviour {
 
     private void Update()
     {
-        
+        _targetBox.enabled = false;
         if (IsDead) {
             StartCoroutine("Death");
             return;
         }
 
+        if (!(Camera.main.WorldToScreenPoint(transform.position).z > 0)) return;
         _targetBox.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+    }
+
+    public void Enable()
+    {
+        _targetBox.enabled = true;
     }
 
     private void OnCollisionEnter(Collision collision) {
