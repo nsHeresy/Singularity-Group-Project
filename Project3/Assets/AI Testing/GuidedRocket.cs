@@ -6,9 +6,9 @@ public class GuidedRocket : MonoBehaviour {
 
     public GameObject target;
     Rigidbody body;
-    public ParticleSystem explodeParticle;
 
-    public ParticleSystem explosion;
+    public ParticleSystem explodeParticle;
+    private ParticleSystem explosion;
 
     //visual components
     
@@ -23,6 +23,7 @@ public class GuidedRocket : MonoBehaviour {
 
 
     private void Start() {
+        Debug.Log(transform.forward);
         StartCoroutine("TimeOut");
         body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * speed;
@@ -32,7 +33,7 @@ public class GuidedRocket : MonoBehaviour {
         StartCoroutine("Explode");
     }
 
-    void LateUpdate () {
+    void FixedUpdate () {
 
         if (exploding) {
             body.velocity = transform.forward.normalized * 0;
