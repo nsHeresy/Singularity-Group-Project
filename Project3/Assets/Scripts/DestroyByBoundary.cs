@@ -9,8 +9,12 @@ public class DestroyByBoundary : MonoBehaviour {
     /// Destroys any object that collides with this object (boundary object)
     /// </summary>
     /// <param name="collision">Data on the collision that took place</param>
-    private void OnCollisionEnter(Collision collision)
+    void OnTriggerExit(Collider collision)
     {
-        Destroy(collision.gameObject);
+        var t = collision.gameObject.GetComponent<Targetable>();
+        if (t != null)
+            t.Damage(100);
+        else
+            Destroy(collision.gameObject);
     }
 }
