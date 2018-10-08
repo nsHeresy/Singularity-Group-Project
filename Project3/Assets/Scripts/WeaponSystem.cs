@@ -23,29 +23,6 @@ public class WeaponSystem : MonoBehaviour
     private float _timeBetweenShots = 0.1f;
     private float _effectDisplayTime = 0.2f;
 
-    public Image OnScreenSprite;
-    public Image OffScreenSprite;
-
-    private Image[] onScreenSprites;
-
-    private Image[] offScreenSprites;
-    //public List<GameObject> objects;
-
-    //public Vector3 objectPoolPos;
-    //Vector3 screenCenter = new Vector3(Screen.width,Screen.height,0)*.5f;
-
-    void Start()
-    {
-//		onScreenSprites = new Image[objects.Count];
-//		offScreenSprites = new Image[objects.Count];
-//		Debug.Log ("Center: " + screenCenter);
-//		for(var i = 0; i < objects.Count; i++)
-//		{
-//			onScreenSprites[i] = Instantiate(OnScreenSprite,objectPoolPos,transform.rotation);
-//			offScreenSprites[i] = Instantiate(OffScreenSprite,objectPoolPos, transform.rotation);
-//		}
-    }
-
     private void Awake()
     {
         _gunLine = GetComponent<LineRenderer>();
@@ -55,7 +32,15 @@ public class WeaponSystem : MonoBehaviour
 
     void Update()
     {
-        PlaceIndicators();
+        
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 500);
+        foreach (var hit in hitColliders)
+        {
+            var target = hit.GetComponent<Targetable>();
+            if (target == null) continue;
+            target.Enable();
+        }
+        
         _timer += Time.deltaTime;
         if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused)
         {
@@ -66,65 +51,6 @@ public class WeaponSystem : MonoBehaviour
         {
             DisableEffects();
         }
-    }
-
-    void PlaceIndicators()
-    {
-        var objects = FindObjectsOfType(typeof(Targetable)) as GameObject[];
-
-        Debug.Log(objects);
-
-//        foreach (var go in objects)
-//        {
-//            Vector3 screenpos = Camera.main.WorldToScreenPoint(go.transform.position);
-//
-//            //if onscreen
-//            if (screenpos.z > 0 && screenpos.x < Screen.width && screenpos.x > 0 && screenpos.y < Screen.height &&
-//                screenpos.y > 0)
-//            {
-//                OnScreenSprite.rectTransform.position = screenpos;
-//                //Debug.Log("OnScreen: " + screenpos);
-//            }
-//            else
-//            {
-//                PlaceOffscreen(screenpos);
-//            }
-//        }
-    }
-
-
-    void PlaceOffscreen(Vector3 screenpos)
-    {
-        float x = screenpos.x;
-        float y = screenpos.y;
-        float offset = 10;
-
-        if (screenpos.z < 0)
-        {
-            screenpos = -screenpos;
-        }
-
-        if (screenpos.x > Screen.width)
-        {
-            x = Screen.width - offset;
-        }
-
-        if (screenpos.x < 0)
-        {
-            x = offset;
-        }
-
-        if (screenpos.y > Screen.height)
-        {
-            y = Screen.height - offset;
-        }
-
-        if (screenpos.y < 0)
-        {
-            y = offset;
-        }
-
-        OffScreenSprite.rectTransform.position = new Vector3(x, y, 0);
     }
 
     public void SwitchWeapons()
