@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class WeaponSystem : MonoBehaviour
 {
+    public GameObject rocketPrefab;
     public GameObject ImpactEffect;
     public AudioClip ImpactNoise;
+
+    //public GameObject targeter;
 
     //range of the weapon
     //used externally for targeting reticule
@@ -20,7 +23,9 @@ public class WeaponSystem : MonoBehaviour
 
     //utils
     private float _timer;
+    private float _rocketTimer;
     private float _timeBetweenShots = 0.1f;
+    private float _timeBetweenRockets = 2.0f;
     private float _effectDisplayTime = 0.2f;
 
     private void Awake()
@@ -33,7 +38,7 @@ public class WeaponSystem : MonoBehaviour
     void Update()
     {
         
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 500);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Range);
         foreach (var hit in hitColliders)
         {
             var target = hit.GetComponent<Targetable>();
@@ -42,9 +47,15 @@ public class WeaponSystem : MonoBehaviour
         }
         
         _timer += Time.deltaTime;
+        _rocketTimer += Time.deltaTime;
         if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused)
         {
             Shoot();
+        }
+
+        if (Input.GetButton("Fire2") && _rocketTimer >= _timeBetweenRockets && !PauseController.isGamePaused)
+        {
+            ShootRocket();
         }
 
         if (_timer >= _timeBetweenShots * _effectDisplayTime)
@@ -78,6 +89,17 @@ public class WeaponSystem : MonoBehaviour
 
         //https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
         //https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
+    }
+
+    public void ShootRocket() {
+        _rocketTimer = 0f;
+
+        Debug.Log(transform.forward);
+
+        //Quaternion q = Quaternion.FromToRotation(transform.position, targeter.transform.position);
+
+        //GameObject Rocket = GameObject.Instantiate(rocketPrefab, transform.position, q);
+        //Rocket.GetComponent<GuidedRocket>().target = this.target;
     }
 
     public void ApplyHit(RaycastHit hit, int damage)
