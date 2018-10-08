@@ -888,10 +888,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a199f038403bd4c6b805982a7fe1ee81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 1751663987357590}
-  impactEffect: {fileID: 100000, guid: 7315bd7efd619ac4e86bd4f5c3c5e44d, type: 2}
-  impactNoise: {fileID: 8300000, guid: a89acd179929b1a4eb435ca2d371d3ee, type: 3}
-  damage: 10
+  ImpactEffect: {fileID: 0}
+  ImpactNoise: {fileID: 0}
+  Damage: 10
+  OnScreenSprite: {fileID: 0}
+  OffScreenSprite: {fileID: 0}
 --- !u!114 &114599060573191022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -928,17 +929,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1751663987357590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 1751663987357590}
-  health: 100
-  explosion: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b,
-    type: 2}
-  explNoise: {fileID: 8300000, guid: e0bd7ef10c4329c4e8ab686337027366, type: 3}
-  isDead: 0
+  Health: 100
+  Explosion: {fileID: 0}
+  ExplosionNoise: {fileID: 0}
+  TargetPrefab: {fileID: 0}
+  IsDead: 0
 --- !u!120 &120473490333738278
 LineRenderer:
   m_ObjectHideFlags: 1
