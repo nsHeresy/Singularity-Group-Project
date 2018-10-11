@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class WeaponSystem : MonoBehaviour
 {
-    public GameObject rocketPrefab;
+    public GameObject RocketPrefab;
     public GameObject ImpactEffect;
     public AudioClip ImpactNoise;
 
-    public GameObject targeter;
-    public GameObject target;
+    public GameObject Targeter;
+    public GameObject Target;
 
     //range of the weapon
     //used externally for targeting reticule
-    public static int Range = 300;
+    private static int Range = 100;
     public int Damage = 10;
 
     //weapon vars
@@ -35,18 +35,9 @@ public class WeaponSystem : MonoBehaviour
         _gunAudio = GetComponent<AudioSource>();
         _gunLight = GetComponent<Light>();
     }
-
-    void Update()
+    
+    private void Update()
     {
-        
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Range);
-        foreach (var hit in hitColliders)
-        {
-            var target = hit.GetComponent<Targetable>();
-            if (target == null) continue;
-            target.Enable();
-        }
-        
         _timer += Time.deltaTime;
         _rocketTimer += Time.deltaTime;
         if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused)
@@ -98,8 +89,8 @@ public class WeaponSystem : MonoBehaviour
         Debug.Log(transform.forward);
 
 
-        GameObject rocket = Instantiate(rocketPrefab, transform.position, transform.rotation);
-        rocket.GetComponent<GuidedRocket>().target = target;
+        GameObject rocket = Instantiate(RocketPrefab, transform.position, transform.rotation);
+        rocket.GetComponent<GuidedRocket>().target = Target;
     }
 
     public void ApplyHit(RaycastHit hit, int damage)

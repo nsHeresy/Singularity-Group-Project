@@ -124,11 +124,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  explosion: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9,
+  Health: 100
+  Explosion: {fileID: 0}
+  ExplosionNoise: {fileID: 0}
+  TargetPrefab: {fileID: 1496289681118818, guid: ec631675869473445be7b7b1a36ca3a2,
     type: 2}
-  explNoise: {fileID: 0}
-  isDead: 0
+  TargetLockPrefab: {fileID: 1612241105213142, guid: 088dc20703473174db3082bc3892c301,
+    type: 2}
+  TargetRangeFromPlayer: 250
 --- !u!136 &136415976211270776
 CapsuleCollider:
   m_ObjectHideFlags: 1
