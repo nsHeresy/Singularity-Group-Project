@@ -95,8 +95,8 @@ public class LevelController : MonoBehaviour {
             Vector3 locationA = new Vector3(Random.Range(0, 1000), Random.Range(0, 500), Random.Range(-300, 300));
             Vector3 locationB = new Vector3(Random.Range(0, 1000), Random.Range(0, 500), Random.Range(-300, 300));
 
-            GameObject portalA = GameObject.Instantiate(Wormhole, locationA, Random.rotation);
-            GameObject portalB = GameObject.Instantiate(Wormhole, locationB, Random.rotation);
+            GameObject portalA = Instantiate(Wormhole, locationA, Random.rotation);
+            GameObject portalB = Instantiate(Wormhole, locationB, Random.rotation);
 
             portalA.GetComponent<Teleport>().sisterWormhole = portalB;
             portalA.GetComponent<Teleport>().player = player;

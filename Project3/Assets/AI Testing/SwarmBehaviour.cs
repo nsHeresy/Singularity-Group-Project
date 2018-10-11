@@ -38,7 +38,7 @@ public class SwarmBehaviour : MonoBehaviour {
                 EnforceSpeedBounds();
             }
 
-            float waitTime = Random.Range(0.3f, 0.5f);
+            var waitTime = Random.Range(0.3f, 0.5f);
             yield return new WaitForSeconds(waitTime);
         }
     }
@@ -48,13 +48,14 @@ public class SwarmBehaviour : MonoBehaviour {
         if (nearObjects.Length == 0)
             return transform.position;
         else {
-            Vector3 avgLocation = new Vector3(0,0,0);
-            for (int n = 0; n < nearObjects.Length; n++) {
-                avgLocation += nearObjects[n].transform.position;
+            var avgLocation = new Vector3(0,0,0);
+            foreach (var t in nearObjects)
+            {
+                avgLocation += t.transform.position;
             }
             avgLocation = avgLocation / nearObjects.Length;
-            Debug.Log(avgLocation);
-            Debug.DrawLine(transform.position, avgLocation);
+            //Debug.Log(avgLocation);
+            //Debug.DrawLine(transform.position, avgLocation);
             //Might need to find nearest collision instead
             return avgLocation;
         }
@@ -78,13 +79,13 @@ public class SwarmBehaviour : MonoBehaviour {
 
     private Vector3 Calc()
     {
-        Vector3 randomize = new Vector3((Random.value * 2) - 1, (Random.value * 2) - 1, (Random.value * 2) - 1);
+        var randomize = new Vector3((Random.value * 2) - 1, (Random.value * 2) - 1, (Random.value * 2) - 1);
 
         randomize.Normalize();
-        SwarmController swarmController = Controller.GetComponent<SwarmController>();
-        Vector3 flockCenter = swarmController.flockCenter;
-        Vector3 flockVelocity = swarmController.flockVelocity;
-        Vector3 follow = chasee.transform.localPosition;
+        var swarmController = Controller.GetComponent<SwarmController>();
+        var flockCenter = swarmController.flockCenter;
+        var flockVelocity = swarmController.flockVelocity;
+        var follow = chasee.transform.localPosition;
 
         flockCenter = flockCenter - transform.localPosition;
         flockVelocity = flockVelocity - body.velocity;
