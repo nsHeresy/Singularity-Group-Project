@@ -34,10 +34,17 @@ public class WeaponSystem : MonoBehaviour
         _gunLine = GetComponent<LineRenderer>();
         _gunAudio = GetComponent<AudioSource>();
         _gunLight = GetComponent<Light>();
+        //InvokeRepeating ("TargetLock", 1f, 0.00011f);
+    }
+
+    private void TargetLock()
+    {
+        Targetable.TargetLock();
     }
     
     private void Update()
     {
+        Targetable.TargetLock();
         _timer += Time.deltaTime;
         _rocketTimer += Time.deltaTime;
         if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused)
