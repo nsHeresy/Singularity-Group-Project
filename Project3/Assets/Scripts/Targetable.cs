@@ -16,22 +16,17 @@ public class Targetable : MonoBehaviour {
     public GameObject TargetPrefab;
     public GameObject TargetLockPrefab;
     public int TargetRangeFromPlayer = 250;
-    private Image _targetBox;
-    private static Image _targetLock;
+    public Image _targetBox;
+    private Image targetLock;
 
-    private static bool Once = true;
-
-
+    private static List<Targetable> _possibleTargetLocks = new List<Targetable>();
+    private static Targetable _closestTarget = null;
 
     private void Start()
     {
         _targetBox = Instantiate(TargetPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
-        if (Once)
-        {
-            _targetLock = Instantiate(TargetLockPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
-            _targetLock.enabled = false;
-            Once = false;
-        }
+        targetLock = Instantiate(TargetLockPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
+        targetLock.enabled = false;
         _targetBox.enabled = false;
     }
 
@@ -42,29 +37,51 @@ public class Targetable : MonoBehaviour {
             return;
         }
         Target();
-        TargetLock();
+        FindPossibleTargetLock();
     }
 
-    public void TargetLock()
+    private bool PreconditionTarget()
+    {    
+        var pos =  Camera.main.WorldToScreenPoint(transform.position);
+        if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return false;
+        return pos.z > 0 && !IsDead();
+    }
+
+    public static void TargetLock()
     {
-        if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return;
+        var distance = 99999f;
+        if (_closestTarget != null) _closestTarget.targetLock.enabled = false;
+        foreach (var possibleTargetLock in _possibleTargetLocks)
+        {
+            var distToPlayer = Vector3.Distance(possibleTargetLock.transform.position, Player.PlayerPosition);
+            if (distToPlayer < distance)
+            {
+                _closestTarget = possibleTargetLock;
+            }
+        }
+        
+        if (_closestTarget == null) return;
+        var pos =  Camera.main.WorldToScreenPoint(_closestTarget.transform.position);
+        if (pos.z < 0) return;
+        
+        _closestTarget.targetLock.enabled = true;
+        _closestTarget.targetLock.transform.position = pos;
+        _possibleTargetLocks  = new List<Targetable>();
+    }
+
+    public void FindPossibleTargetLock()
+    {
+        if (PreconditionTarget() == false) return;
         var pos = Camera.main.WorldToScreenPoint(transform.position);
-        _targetLock.enabled = false;
-        if (!(pos.z > 0) || IsDead()) return;
-        var posDistance = Vector2.Distance(pos, Input.mousePosition);
-        if (posDistance > 100) return;
-        var currentTargetLockDistance = Vector2.Distance(_targetLock.transform.position, Input.mousePosition);
-        if (!(posDistance < currentTargetLockDistance)) return;
-        _targetBox.transform.position = pos;
-        _targetLock.enabled = true;
+        var mousePosDistance = Vector2.Distance(pos, Input.mousePosition);
+        if (mousePosDistance > 50) return;
+        _possibleTargetLocks.Add(this);
     }
 
     public void Target()
     {
         _targetBox.enabled = false;
-        if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return;
-        if (!(Camera.main.WorldToScreenPoint(transform.position).z > 0)) return;
-        if (IsDead()) return;
+        if (PreconditionTarget() == false) return;
         _targetBox.enabled = true;
         _targetBox.transform.position = Camera.main.WorldToScreenPoint(transform.position);
     }
@@ -91,6 +108,7 @@ public class Targetable : MonoBehaviour {
         
         //playDeathAnimation();
         _targetBox.enabled = false;
+        targetLock.enabled = false;
         Destroy(gameObject);
         yield return null;
     }
