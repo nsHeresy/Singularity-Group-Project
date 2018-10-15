@@ -17,16 +17,22 @@ public class Targetable : MonoBehaviour {
     public GameObject TargetLockPrefab;
     public int TargetRangeFromPlayer = 250;
     private Image _targetBox;
-    private Image _targetLock;
+    private static Image _targetLock;
+
+    private static bool Once = true;
 
 
 
     private void Start()
     {
         _targetBox = Instantiate(TargetPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
-        _targetLock = Instantiate(TargetLockPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
+        if (Once)
+        {
+            _targetLock = Instantiate(TargetLockPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
+            _targetLock.enabled = false;
+            Once = false;
+        }
         _targetBox.enabled = false;
-        _targetLock.enabled = false;
     }
 
     private void Update()
@@ -41,26 +47,26 @@ public class Targetable : MonoBehaviour {
 
     public void TargetLock()
     {
-        if (!(Camera.main.WorldToScreenPoint(transform.position).z > 0)) return;
-        if (Vector2.Distance(Camera.main.WorldToScreenPoint(transform.position), Input.mousePosition) > 100) return;
-        
-        _targetLock.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return;
+        var pos = Camera.main.WorldToScreenPoint(transform.position);
+        _targetLock.enabled = false;
+        if (!(pos.z > 0) || IsDead()) return;
+        var posDistance = Vector2.Distance(pos, Input.mousePosition);
+        if (posDistance > 100) return;
+        var currentTargetLockDistance = Vector2.Distance(_targetLock.transform.position, Input.mousePosition);
+        if (!(posDistance < currentTargetLockDistance)) return;
+        _targetBox.transform.position = pos;
         _targetLock.enabled = true;
     }
 
     public void Target()
     {
-        ToggleTarget();
-        _targetBox.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-    }
-
-    public void ToggleTarget()
-    {
         _targetBox.enabled = false;
+        if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return;
         if (!(Camera.main.WorldToScreenPoint(transform.position).z > 0)) return;
         if (IsDead()) return;
-        if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return;
         _targetBox.enabled = true;
+        _targetBox.transform.position = Camera.main.WorldToScreenPoint(transform.position);
     }
 
     private void OnCollisionEnter(Collision collision) {
