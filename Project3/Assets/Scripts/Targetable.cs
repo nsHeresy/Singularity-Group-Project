@@ -16,11 +16,11 @@ public class Targetable : MonoBehaviour {
     public GameObject TargetPrefab;
     public GameObject TargetLockPrefab;
     public int TargetRangeFromPlayer = 250;
-    public Image _targetBox;
-    private Image targetLock;
+    private Image _targetBox;
+    public Image targetLock;
 
     private static List<Targetable> _possibleTargetLocks = new List<Targetable>();
-    private static Targetable _closestTarget = null;
+    public static Targetable closestTarget = null;
 
     private void Start()
     {
@@ -50,22 +50,23 @@ public class Targetable : MonoBehaviour {
     public static void TargetLock()
     {
         var distance = 99999f;
-        if (_closestTarget != null) _closestTarget.targetLock.enabled = false;
+        if (closestTarget != null) closestTarget.targetLock.enabled = false;
         foreach (var possibleTargetLock in _possibleTargetLocks)
         {
+            if (possibleTargetLock == null) continue;
             var distToPlayer = Vector3.Distance(possibleTargetLock.transform.position, Player.PlayerPosition);
             if (distToPlayer < distance)
             {
-                _closestTarget = possibleTargetLock;
+                closestTarget = possibleTargetLock;
             }
         }
         
-        if (_closestTarget == null) return;
-        var pos =  Camera.main.WorldToScreenPoint(_closestTarget.transform.position);
+        if (closestTarget == null) return;
+        var pos =  Camera.main.WorldToScreenPoint(closestTarget.transform.position);
         if (pos.z < 0) return;
         
-        _closestTarget.targetLock.enabled = true;
-        _closestTarget.targetLock.transform.position = pos;
+        closestTarget.targetLock.enabled = true;
+        closestTarget.targetLock.transform.position = pos;
         _possibleTargetLocks  = new List<Targetable>();
     }
 

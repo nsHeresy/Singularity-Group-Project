@@ -34,14 +34,8 @@ public class WeaponSystem : MonoBehaviour
         _gunLine = GetComponent<LineRenderer>();
         _gunAudio = GetComponent<AudioSource>();
         _gunLight = GetComponent<Light>();
-        //InvokeRepeating ("TargetLock", 1f, 0.00011f);
     }
 
-    private void TargetLock()
-    {
-        Targetable.TargetLock();
-    }
-    
     private void Update()
     {
         Targetable.TargetLock();
@@ -72,10 +66,6 @@ public class WeaponSystem : MonoBehaviour
     {
         _timer = 0f;
 
-        Ray shootRay = new Ray();
-        RaycastHit hit = new RaycastHit();
-
-
         _gunLight.enabled = true;
         _gunLine.enabled = true;
 
@@ -83,11 +73,13 @@ public class WeaponSystem : MonoBehaviour
 
         _gunLine.SetPosition(0, transform.position);
 
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
-
-        //https://docs.unity3d.com/ScriptReference/Physics.BoxCast.html
-        //https://docs.unity3d.com/ScriptReference/Renderer-bounds.html
+        var dist = Vector2.Distance(Targetable.closestTarget.targetLock.transform.position, Input.mousePosition);
+        Debug.Log(dist);
+        
+        if (dist < 50)
+        {
+            Targetable.closestTarget.Damage(50);
+        }
     }
 
     public void ShootRocket() {
