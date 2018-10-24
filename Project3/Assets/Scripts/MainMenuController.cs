@@ -11,18 +11,13 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("GameLevel");
     }
 
-    public void About()
+    public void Settings()
     {
-        Debug.Log("About Button - Unimplemented");
-    }
-
-    public void Credits()
-    {
-        Debug.Log("Credits Button - Unimplemented");
+        Debug.Log("Settings");
     }
 
     public void Quit()
     {
-        Application.Quit();
+        Application.Quit(); //Works when built
     }
 }
