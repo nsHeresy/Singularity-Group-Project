@@ -41,12 +41,12 @@ public class WeaponSystem : MonoBehaviour
         Targetable.TargetLock();
         _timer += Time.deltaTime;
         _rocketTimer += Time.deltaTime;
-        if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.isGamePaused)
+        if (Input.GetButton("Fire1") && _timer >= _timeBetweenShots && !PauseController.IsGamePaused)
         {
             Shoot();
         }
 
-        if (Input.GetButton("Fire2") && _rocketTimer >= _timeBetweenRockets && !PauseController.isGamePaused)
+        if (Input.GetButton("Fire2") && _rocketTimer >= _timeBetweenRockets && !PauseController.IsGamePaused)
         {
             ShootRocket();
         }
