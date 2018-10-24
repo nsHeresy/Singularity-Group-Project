@@ -6,13 +6,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Targetable : MonoBehaviour {
-
+public class Targetable : MonoBehaviour
+{
     public float Health;
 
-    public ParticleSystem Explosion; 
+    public ParticleSystem Explosion;
     public AudioClip ExplosionNoise;
-    
+
     public GameObject TargetPrefab;
     public GameObject TargetLockPrefab;
     public int TargetRangeFromPlayer = 250;
@@ -32,24 +32,26 @@ public class Targetable : MonoBehaviour {
 
     private void Update()
     {
-        if (IsDead()) {
+        if (IsDead())
+        {
             StartCoroutine("Death");
             return;
         }
+        if (PauseController.IsGamePaused) return;
         Target();
         FindPossibleTargetLock();
     }
 
     private bool PreconditionTarget()
-    {    
-        var pos =  Camera.main.WorldToScreenPoint(transform.position);
+    {
+        var pos = Camera.main.WorldToScreenPoint(transform.position);
         if (Vector3.Distance(transform.position, Player.PlayerPosition) > TargetRangeFromPlayer) return false;
         return pos.z > 0 && !IsDead();
     }
 
     public static void TargetLock()
     {
-        var distance = 99999f;
+        const float distance = 99999f;
         if (closestTarget != null) closestTarget.targetLock.enabled = false;
         foreach (var possibleTargetLock in _possibleTargetLocks)
         {
@@ -60,14 +62,14 @@ public class Targetable : MonoBehaviour {
                 closestTarget = possibleTargetLock;
             }
         }
-        
+
         if (closestTarget == null) return;
-        var pos =  Camera.main.WorldToScreenPoint(closestTarget.transform.position);
+        var pos = Camera.main.WorldToScreenPoint(closestTarget.transform.position);
         if (pos.z < 0) return;
-        
+
         closestTarget.targetLock.enabled = true;
         closestTarget.targetLock.transform.position = pos;
-        _possibleTargetLocks  = new List<Targetable>();
+        _possibleTargetLocks = new List<Targetable>();
     }
 
     public void FindPossibleTargetLock()
@@ -87,8 +89,8 @@ public class Targetable : MonoBehaviour {
         _targetBox.transform.position = Camera.main.WorldToScreenPoint(transform.position);
     }
 
-    private void OnCollisionEnter(Collision collision) {
-
+    private void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.layer == gameObject.layer)
             return;
         var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
@@ -96,27 +98,25 @@ public class Targetable : MonoBehaviour {
         //GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
 
-
-    public void Damage(float amount) {
+    public void Damage(float amount)
+    {
         Health -= amount;
         if (Health <= 0) StartCoroutine(Death());
     }
 
-
-
-    private IEnumerator Death() {
+    private IEnumerator Death()
+    {
         //if (_targetBox != null) _targetBox.enabled = false;
-        
+
         //playDeathAnimation();
         _targetBox.enabled = false;
         targetLock.enabled = false;
         Destroy(gameObject);
         yield return null;
     }
-    
+
     public bool IsDead()
     {
-        
         return Health <= 0;
     }
 
