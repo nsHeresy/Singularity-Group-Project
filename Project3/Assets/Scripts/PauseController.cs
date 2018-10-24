@@ -1,72 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
-
-    public static bool isGamePaused;
-    public GameObject pauseMenuUI;
+    public static bool IsGamePaused;
+    public GameObject PauseMenuUi;
 
     private void Start()
     {
         Resume();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+        if (IsGamePaused)
         {
-            if (isGamePaused)
-            {
-                Resume();
-
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
         }
-
+        else
+        {
+            Pause();
+        }
     }
 
-    /// <summary>
-    /// Pauses the game. Enables the pause UI, freeses time, and releases the cursor from the customPointer.
-    /// </summary>
-    void Pause()
+    private void Pause()
     {
-        pauseMenuUI.GetComponent<Canvas>().enabled = true;
+        PauseMenuUi.SetActive(true);
         Time.timeScale = 0f;
-        isGamePaused = true;
+        IsGamePaused = true;
         CustomPointer.TogglePause();
     }
 
-    /// <summary>
-    /// Unpauses the game. Disaables the pause UI, unfreezes time, and gives the cursor to the customPointer.
-    /// </summary>
     public void Resume()
     {
-        pauseMenuUI.GetComponent<Canvas>().enabled = false;
+        PauseMenuUi.SetActive(false);
         Time.timeScale = 1f;
-        isGamePaused = false;
+        IsGamePaused = false;
         CustomPointer.TogglePause();
     }
 
-    /// <summary>
-    /// Reloads the game level
-    /// </summary>
-    public void ResetLevel()
+    public void Menu()
     {
-        SceneManager.LoadScene("GameLevel");
+        Debug.Log("Menu");
     }
-    
-    /// <summary>
-    /// Loads the main menu level
-    /// </summary>
-    public void QuitToMain()
+
+    public void Settings()
     {
-        SceneManager.LoadScene("MainMenu");
+        Debug.Log("Settings");
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit");
     }
 }
