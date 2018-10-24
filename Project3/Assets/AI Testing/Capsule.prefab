@@ -132,6 +132,7 @@ MonoBehaviour:
   TargetLockPrefab: {fileID: 1612241105213142, guid: 088dc20703473174db3082bc3892c301,
     type: 2}
   TargetRangeFromPlayer: 250
+  targetLock: {fileID: 0}
 --- !u!136 &136415976211270776
 CapsuleCollider:
   m_ObjectHideFlags: 1
