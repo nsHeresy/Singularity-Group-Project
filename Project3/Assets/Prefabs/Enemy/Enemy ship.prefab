@@ -374,12 +374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 1507589182669802}
-  health: 30
-  explosion: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9,
-    type: 2}
-  explNoise: {fileID: 8300000, guid: e0bd7ef10c4329c4e8ab686337027366, type: 3}
-  isDead: 0
+  Health: 0
+  Explosion: {fileID: 0}
+  ExplosionNoise: {fileID: 0}
+  TargetPrefab: {fileID: 0}
+  TargetLockPrefab: {fileID: 0}
+  TargetRangeFromPlayer: 250
+  targetLock: {fileID: 0}
 --- !u!114 &114533236328193774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,11 +392,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 1507589182669802}
-  health: 100
-  explosion: {fileID: 19800000, guid: c1804e2f74d38467a89b6ead29253aba, type: 2}
-  explNoise: {fileID: 8300000, guid: e0bd7ef10c4329c4e8ab686337027366, type: 3}
-  isDead: 0
+  Health: 0
+  Explosion: {fileID: 0}
+  ExplosionNoise: {fileID: 0}
+  TargetPrefab: {fileID: 0}
+  TargetLockPrefab: {fileID: 0}
+  TargetRangeFromPlayer: 250
+  targetLock: {fileID: 0}
 --- !u!114 &114854507976767428
 MonoBehaviour:
   m_ObjectHideFlags: 1
