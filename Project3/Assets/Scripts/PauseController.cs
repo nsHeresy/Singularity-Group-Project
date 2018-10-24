@@ -42,7 +42,7 @@ public class PauseController : MonoBehaviour
 
     public void Menu()
     {
-        Debug.Log("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Settings()
@@ -53,5 +53,6 @@ public class PauseController : MonoBehaviour
     public void Quit()
     {
         Debug.Log("Quit");
+        Application.Quit(); //Works when built
     }
 }
