@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54955060264470056}
   - component: {fileID: 114293063483047348}
   - component: {fileID: 114541283577242638}
+  - component: {fileID: 114003245620599102}
   m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
@@ -102,6 +103,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114003245620599102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442997600805316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189936212c663bc439b28afc0170c345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingObject: {fileID: 0}
+  offset: 10
 --- !u!114 &114293063483047348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 10
   Explosion: {fileID: 0}
   ExplosionNoise: {fileID: 0}
   TargetPrefab: {fileID: 1496289681118818, guid: ec631675869473445be7b7b1a36ca3a2,
