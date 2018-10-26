@@ -44,8 +44,8 @@ public class GuidedRocket : MonoBehaviour {
 
             transform.LookAt(target.transform);
         }
-        //body.AddForce(transform.forward * speed);
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        body.AddForce(transform.forward * speed);
+        //transform.Translate(transform.forward * speed * Time.deltaTime);
     }
 
     IEnumerator Explode() {
