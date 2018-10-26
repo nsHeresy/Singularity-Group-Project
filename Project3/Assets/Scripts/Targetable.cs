@@ -91,6 +91,7 @@ public class Targetable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //entities can't collide with objects in the same layer
         if (collision.gameObject.layer == gameObject.layer)
             return;
         var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
