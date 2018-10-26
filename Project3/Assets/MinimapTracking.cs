@@ -14,10 +14,16 @@ public class MinimapTracking : MonoBehaviour {
 
     public GameObject trackingObject;
     public float offset;    //how far above the object should this thing track.
+    float initHeight;
+
+    private void Start()
+    {
+        initHeight = this.transform.position.y;
+    }
 
 
     void LateUpdate () {
         Vector3 objectPos = trackingObject.transform.position;
-        transform.position = new Vector3(objectPos.x, objectPos.y + offset, objectPos.z);
+        transform.position = new Vector3(objectPos.x, initHeight, objectPos.z);
 	}
 }
