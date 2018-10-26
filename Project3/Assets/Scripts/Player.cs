@@ -19,6 +19,9 @@ public class Player : Targetable
 	private void Update ()
 	{
 		PlayerPosition = transform.position;
+        curHealth += Time.deltaTime;
+        if (curHealth > maxHealth)
+            curHealth = maxHealth;
 
 	}
 	
