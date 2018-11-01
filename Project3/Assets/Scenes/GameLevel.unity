@@ -2951,6 +2951,9 @@ MonoBehaviour:
   CurHealth: 100
   MaxHealth: 100
   HealFactor: 2
+  ExplodeParticle: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 2}
+  IsResponsive: 1
   HealthBar: {fileID: 227870185}
   ScoreText: {fileID: 1579690118}
 --- !u!1 &483786647
@@ -5240,7 +5243,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4958474997461228, guid: dbf5da902e331a944983e5bb40b00f41, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 130.2
+      value: 142.78
       objectReference: {fileID: 0}
     - target: {fileID: 4958474997461228, guid: dbf5da902e331a944983e5bb40b00f41, type: 2}
       propertyPath: m_LocalRotation.x
