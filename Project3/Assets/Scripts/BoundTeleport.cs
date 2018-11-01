@@ -21,12 +21,6 @@ public class BoundTeleport : MonoBehaviour {
         Vector3 newPos = pos * -1;
 
         player.transform.position = newPos;
-
-        //Color whiteFlash = new Color(255f, 255f, 255f, 255f);
-        // Color transparent = new Color(0f, 0f, 0f, 0f);
-        //panel.GetComponent<FadeIn>().PanelFade(whiteFlash, 1f, false);
-        //panel.GetComponent<FadeIn>().PanelFade(transparent, 20f, false);
         panel.GetComponent<FadeIn>().Flash();
-
     }
 }
