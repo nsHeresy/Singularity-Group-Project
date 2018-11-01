@@ -24,6 +24,11 @@ public class Player : MonoBehaviour
 		PlayerPosition = transform.position;
 		HealthBar.fillAmount = CurHealth / MaxHealth;
 		ScoreText.text = CurrentScore.ToString();
+
+        //kill the player
+        if (CurHealth < 0) {
+            Kill();
+        }
         RegenHealth();
 	}
 
@@ -31,6 +36,10 @@ public class Player : MonoBehaviour
         CurHealth += Time.deltaTime * HealFactor;
         if (CurHealth > MaxHealth)
             CurHealth = MaxHealth;
+    }
+
+    void Kill() {
+        Debug.Log("Kill Me");
     }
 	
 }

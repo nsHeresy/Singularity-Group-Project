@@ -35,13 +35,16 @@ public class SwarmBehaviour : MonoBehaviour {
                 //}
                 
                 body.velocity = body.velocity + Calc() * Time.deltaTime;
-                EnforceSpeedBounds();
+                EnforceSpeedBounds(); 
+                //transform.rotation = Quaternion.LookRotation(body.velocity);
             }
 
             var waitTime = Random.Range(0.3f, 0.5f);
             yield return new WaitForSeconds(waitTime);
         }
     }
+
+    
 
     private Vector3 CheckIfCollisionImminent() {
         var nearObjects = Physics.OverlapSphere(transform.position, collisionDetectionRadius, 9);
@@ -54,8 +57,7 @@ public class SwarmBehaviour : MonoBehaviour {
                 avgLocation += t.transform.position;
             }
             avgLocation = avgLocation / nearObjects.Length;
-            //Debug.Log(avgLocation);
-            //Debug.DrawLine(transform.position, avgLocation);
+
             //Might need to find nearest collision instead
             return avgLocation;
         }
