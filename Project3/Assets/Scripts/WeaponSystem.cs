@@ -9,9 +9,6 @@ public class WeaponSystem : MonoBehaviour
     public GameObject ImpactEffect;
     public AudioClip ImpactNoise;
 
-    public GameObject Targeter;
-    public GameObject Target;
-
     //range of the weapon
     //used externally for targeting reticule
     private static int Range = 100;
