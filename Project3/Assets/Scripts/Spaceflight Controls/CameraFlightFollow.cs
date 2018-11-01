@@ -7,6 +7,7 @@ public class CameraFlightFollow : MonoBehaviour {
 
 	public Transform target; //What the camera looks at. Generally the targeter.
 	public PlayerFlightControl control; //The PlayerFlightControl script that is in play.
+    public Player player;
 	
 	public float follow_distance = 3.0f; //How far behind the camera will follow the targeter.
 	public float camera_elevation = 3.0f; //How high the camera will rise above the targeter's Z axis.
@@ -22,7 +23,8 @@ public class CameraFlightFollow : MonoBehaviour {
 	
 	
 	void Awake() {
-	
+
+        player = GameObject.Find("Characters/Player").GetComponent<Player>();
 		instance = this;
 	
 	
@@ -30,6 +32,10 @@ public class CameraFlightFollow : MonoBehaviour {
 
 	
 	void FixedUpdate () {
+
+        if (!player.IsResponsive) {
+            return;
+        }
 
 		if (target == null) {
 			
