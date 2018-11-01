@@ -88,7 +88,7 @@ public class WeaponSystem : MonoBehaviour
 
 
         GameObject rocket = Instantiate(RocketPrefab, transform.position, transform.rotation);
-        rocket.GetComponent<GuidedRocket>().target = Target;
+        rocket.GetComponent<GuidedRocket>().target = Targetable.ClosestTarget.gameObject;
     }
 
     public void ApplyHit(RaycastHit hit, int damage)
