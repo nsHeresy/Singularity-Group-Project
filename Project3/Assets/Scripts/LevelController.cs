@@ -8,15 +8,8 @@ public class LevelController : MonoBehaviour {
     public GameObject player;
     public GameObject Wormhole;
     public GameObject Swarm;
-
-    public GameObject sceneBase;
-
-    //public Image panel;
-    //public Image gameOverPanel;
-
-    //public Canvas gameOverUI;
-    //public Canvas gameUI;
-
+    
+    
     private GameObject activeSwarm;
 
     int waveCount = 0;
@@ -100,11 +93,9 @@ public class LevelController : MonoBehaviour {
 
             portalA.GetComponent<Teleport>().sisterWormhole = portalB;
             portalA.GetComponent<Teleport>().player = player;
-            //portalA.GetComponent<Teleport>().panel = panel;
 
             portalB.GetComponent<Teleport>().sisterWormhole = portalA;
             portalB.GetComponent<Teleport>().player = player;
-            //portalB.GetComponent<Teleport>().panel = panel;
 
             portalPairs.Add(portalA);
             portalPairs.Add(portalB);
@@ -144,7 +135,7 @@ public class LevelController : MonoBehaviour {
 
         //make a new swarm
         activeSwarm = Instantiate(Swarm, transform);
-        activeSwarm.GetComponent<SwarmController>().StartSwarm(sceneBase);
+        activeSwarm.GetComponent<SwarmController>().StartSwarm(player);
     }
     
 

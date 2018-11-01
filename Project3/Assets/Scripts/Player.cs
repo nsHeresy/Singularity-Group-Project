@@ -4,33 +4,28 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : Targetable
+public class Player : MonoBehaviour
 {
-    public float curHealth;
-    public float maxHealth;
+    public float CurHealth = 100;
+    public float MaxHealth = 100;
 
-    public float healFactor;
+    public float HealFactor = 2;
 
 	public static Vector3 PlayerPosition;
 
-	private void Start () {
-        curHealth = 50;
-        maxHealth = 100;
-
-        healFactor = 2;
-}
+	public Image HealthBar;
 	
 	private void Update ()
 	{
 		PlayerPosition = transform.position;
-
+		HealthBar.fillAmount = CurHealth / MaxHealth;
         RegenHealth();
 	}
 
     void RegenHealth() {
-        curHealth += Time.deltaTime * healFactor;
-        if (curHealth > maxHealth)
-            curHealth = maxHealth;
+        CurHealth += Time.deltaTime * HealFactor;
+        if (CurHealth > MaxHealth)
+            CurHealth = MaxHealth;
     }
 	
 }
