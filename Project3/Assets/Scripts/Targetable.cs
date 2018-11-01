@@ -16,11 +16,13 @@ public class Targetable : MonoBehaviour
     public GameObject TargetPrefab;
     public GameObject TargetLockPrefab;
     public int TargetRangeFromPlayer = 250;
+    public int ScoreOnDeath = 100;
+    
     private Image _targetBox;
     public Image targetLock;
 
     private static List<Targetable> _possibleTargetLocks = new List<Targetable>();
-    public static Targetable closestTarget = null;
+    public static Targetable ClosestTarget = null;
 
     private void Start()
     {
@@ -52,23 +54,23 @@ public class Targetable : MonoBehaviour
     public static void TargetLock()
     {
         const float distance = 99999f;
-        if (closestTarget != null) closestTarget.targetLock.enabled = false;
+        if (ClosestTarget != null) ClosestTarget.targetLock.enabled = false;
         foreach (var possibleTargetLock in _possibleTargetLocks)
         {
             if (possibleTargetLock == null) continue;
             var distToPlayer = Vector3.Distance(possibleTargetLock.transform.position, Player.PlayerPosition);
             if (distToPlayer < distance)
             {
-                closestTarget = possibleTargetLock;
+                ClosestTarget = possibleTargetLock;
             }
         }
 
-        if (closestTarget == null) return;
-        var pos = Camera.main.WorldToScreenPoint(closestTarget.transform.position);
+        if (ClosestTarget == null) return;
+        var pos = Camera.main.WorldToScreenPoint(ClosestTarget.transform.position);
         if (pos.z < 0) return;
 
-        closestTarget.targetLock.enabled = true;
-        closestTarget.targetLock.transform.position = pos;
+        ClosestTarget.targetLock.enabled = true;
+        ClosestTarget.targetLock.transform.position = pos;
         _possibleTargetLocks = new List<Targetable>();
     }
 
@@ -112,6 +114,7 @@ public class Targetable : MonoBehaviour
         //playDeathAnimation();
         _targetBox.enabled = false;
         targetLock.enabled = false;
+        Player.CurrentScore += ScoreOnDeath;
         Destroy(gameObject);
         yield return null;
     }
