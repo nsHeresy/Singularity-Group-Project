@@ -56,4 +56,8 @@ public class PauseController : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit(); //Works when built
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene("GameLevel");
+    }
 }
