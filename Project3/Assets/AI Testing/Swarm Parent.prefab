@@ -67,8 +67,8 @@ MonoBehaviour:
   minVelocity: 50
   maxVelocity: 100
   randomness: 2
-  flockSize: 100
-  prefab: {fileID: 1509295026469428, guid: 73605b25c667ee84dba9452c269c503e, type: 2}
+  flockSize: 1
+  prefab: {fileID: 1245002135670332, guid: fd21d338a3b3c444481565378b2223ad, type: 2}
   chasee: {fileID: 0}
   flockCenter: {x: 0, y: 0, z: 0}
   flockVelocity: {x: 0, y: 0, z: 0}

@@ -7,7 +7,6 @@ public class Teleport : MonoBehaviour {
 
     public GameObject sisterWormhole;   //the paired wormhole to move the player to, on collision
     public GameObject player;           //the player object to move around
-    public Image panel;                 //the UI panel which can be darkened during this movement.
 
     public float teleportCooldown = 3f;     //how long before the same wormhole can teleport you again
     public float timeSinceLastTeleport = 3f;        //cooldown enforcing
@@ -37,11 +36,6 @@ public class Teleport : MonoBehaviour {
     /// </summary>
     void TeleportPlayer() {
 
-        Color whiteFlash = new Color(255f, 255f, 255f, 255f);
-        Color transparent = new Color(1f, 1f, 1f, 0f);
-        panel.GetComponent<FadeIn>().PanelFade(whiteFlash,.5f,false);
-        panel.GetComponent<FadeIn>().PanelFade(transparent, 0.5f, false);
-
         timeSinceLastTeleport = teleportCooldown;
 
         Vector3 thisPosition = sisterWormhole.transform.position;
@@ -61,8 +55,12 @@ public class Teleport : MonoBehaviour {
     /// <returns>True if the player is in range of the wormhole, False if they're not</returns>
     bool isPlayerInDistance()
     {
-        if(player != null)
-            return (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 30);
+        if (player != null)
+        {
+            var result =  (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 100);
+            Debug.Log(result);
+            return result;
+        }
         return false;
     }
 }
