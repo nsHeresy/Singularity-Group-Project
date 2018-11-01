@@ -58,7 +58,6 @@ public class Teleport : MonoBehaviour {
         if (player != null)
         {
             var result =  (Vector3.Distance(gameObject.transform.position, player.transform.position) <= 100);
-            Debug.Log(result);
             return result;
         }
         return false;
