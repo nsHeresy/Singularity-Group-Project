@@ -12,7 +12,8 @@ public class BoundTeleport : MonoBehaviour {
     //watches for when there is a collision
     private void OnTriggerExit(Collider other)
     {
-
+        if (other.tag != "Player")
+            return;
         
         Transform T = other.gameObject.GetComponent<Transform>();
 

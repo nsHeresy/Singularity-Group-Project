@@ -11,7 +11,6 @@ public class MinimapComponent : MonoBehaviour {
     
 	void Start () {
         rot = transform.rotation;
-        //minimap = GameObject.Find("MinimapCamera").GetComponent<MinimapTracking>();
 	}
 	
 	void LateUpdate () {
