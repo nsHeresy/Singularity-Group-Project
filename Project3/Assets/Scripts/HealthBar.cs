@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerTargetable = player.GetComponent<Player>();
-        healthPercent = playerTargetable.curHealth / playerTargetable.maxHealth;
+        healthPercent = playerTargetable.CurHealth / playerTargetable.MaxHealth;
         var healthBarRect = transform as RectTransform;
         healthFullWidth = healthBarRect.sizeDelta.x;
 	}
@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour {
         healthBarRect.sizeDelta = new Vector2(healthFullWidth, healthBarRect.sizeDelta.y);
 
         // calculate % width
-        healthPercent = playerTargetable.curHealth / playerTargetable.maxHealth;
+        healthPercent = playerTargetable.CurHealth / playerTargetable.MaxHealth;
 
         //calculate new width and apply
         var curWidth = healthBarRect.rect.width;

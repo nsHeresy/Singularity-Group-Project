@@ -74,7 +74,6 @@ public class WeaponSystem : MonoBehaviour
         _gunLine.SetPosition(0, transform.position);
 
         var dist = Vector2.Distance(Targetable.closestTarget.targetLock.transform.position, Input.mousePosition);
-        Debug.Log(dist);
         
         if (dist < 50)
         {

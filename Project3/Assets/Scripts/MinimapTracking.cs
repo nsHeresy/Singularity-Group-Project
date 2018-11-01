@@ -24,6 +24,6 @@ public class MinimapTracking : MonoBehaviour {
 
     void LateUpdate () {
         Vector3 objectPos = trackingObject.transform.position;
-        transform.position = new Vector3(objectPos.x, initHeight, objectPos.z);
+        transform.position = new Vector3(objectPos.x, objectPos.y + offset, objectPos.z);
 	}
 }
