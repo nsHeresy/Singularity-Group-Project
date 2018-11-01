@@ -109,11 +109,10 @@ public class Targetable : MonoBehaviour
 
     private IEnumerator Death()
     {
-        //if (_targetBox != null) _targetBox.enabled = false;
+        if (_targetBox != null) _targetBox.enabled = false;
+        if (targetLock != null) targetLock.enabled = false;
 
         //playDeathAnimation();
-        _targetBox.enabled = false;
-        targetLock.enabled = false;
         Player.CurrentScore += ScoreOnDeath;
         Destroy(gameObject);
         yield return null;
