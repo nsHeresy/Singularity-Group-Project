@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: 8ab445f56996f07429471ef389dd01a2
+guid: fda2c23f82ff1274fa5f3c0786e615a7
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Mesh2
+    100000: ship2
     100002: //RootNode
-    400000: Mesh2
+    400000: ship2
     400002: //RootNode
-    2100000: Mesh2Mat
-    2300000: Mesh2
-    3300000: Mesh2
-    4300000: Mesh2
-    2186277476908879412: ImportLogs
+    2100000: ship2Mat
+    2300000: ship2
+    3300000: ship2
+    4300000: ship2
   externalObjects: {}
   materials:
     importMaterials: 1
