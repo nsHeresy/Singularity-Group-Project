@@ -23,7 +23,6 @@ public class GuidedRocket : MonoBehaviour {
 
 
     private void Start() {
-        Debug.Log(transform.forward);
         StartCoroutine("TimeOut");
         body = GetComponent<Rigidbody>();
         body.velocity = transform.forward * speed;
@@ -45,7 +44,6 @@ public class GuidedRocket : MonoBehaviour {
             transform.LookAt(target.transform);
         }
         body.AddForce(transform.forward * speed);
-        //transform.Translate(transform.forward * speed * Time.deltaTime);
     }
 
     IEnumerator Explode() {
