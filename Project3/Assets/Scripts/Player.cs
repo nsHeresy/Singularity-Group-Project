@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float CurHealth = 100;
+    public float CurHealth = 50;
     public float MaxHealth = 100;
 	public float HealFactor = 2;
 	
@@ -24,8 +24,6 @@ public class Player : MonoBehaviour
 		PlayerPosition = transform.position;
 		HealthBar.fillAmount = CurHealth / MaxHealth;
 		ScoreText.text = CurrentScore.ToString();
-
-        //kill the player
         if (CurHealth <= 0) {
             Kill();
         }
@@ -38,17 +36,17 @@ public class Player : MonoBehaviour
         Damage(magnitude * 5);
     }
 
-    void Damage(float amount) {
+    private void Damage(float amount) {
         CurHealth -= amount;
     }
 
-    void RegenHealth() {
+    private void RegenHealth() {
         CurHealth += Time.deltaTime * HealFactor;
         if (CurHealth > MaxHealth)
             CurHealth = MaxHealth;
     }
 
-    void Kill() {
+    private void Kill() {
         Debug.Log("Kill Me");
     }
 	
