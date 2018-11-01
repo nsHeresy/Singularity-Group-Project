@@ -83,6 +83,7 @@ public class PlayerFlightControl : MonoBehaviour
     void FixedUpdate () {
 
         if (!player.IsResponsive) {
+            mainThruster.Stop();
             return;
         }
         //reset the speed of the object to 0 - DRIVER
