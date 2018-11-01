@@ -73,11 +73,11 @@ public class WeaponSystem : MonoBehaviour
 
         _gunLine.SetPosition(0, transform.position);
 
-        var dist = Vector2.Distance(Targetable.closestTarget.targetLock.transform.position, Input.mousePosition);
+        var dist = Vector2.Distance(Targetable.ClosestTarget.targetLock.transform.position, Input.mousePosition);
         
         if (dist < 50)
         {
-            Targetable.closestTarget.Damage(50);
+            Targetable.ClosestTarget.Damage(50);
         }
     }
 
