@@ -58,7 +58,7 @@ public class LevelController : MonoBehaviour {
         }
 
         if (activeSwarm.GetComponent<SwarmController>().IsCleared()) {
-            Debug.Log("Okay");
+            //Debug.Log("Okay");
             //StartNewSwarm();
         }
 	}
