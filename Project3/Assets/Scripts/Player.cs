@@ -26,11 +26,21 @@ public class Player : MonoBehaviour
 		ScoreText.text = CurrentScore.ToString();
 
         //kill the player
-        if (CurHealth < 0) {
+        if (CurHealth <= 0) {
             Kill();
         }
         RegenHealth();
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
+        Damage(magnitude * 5);
+    }
+
+    void Damage(float amount) {
+        CurHealth -= amount;
+    }
 
     void RegenHealth() {
         CurHealth += Time.deltaTime * HealFactor;
