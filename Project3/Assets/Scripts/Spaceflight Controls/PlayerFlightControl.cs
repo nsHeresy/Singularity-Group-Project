@@ -49,11 +49,13 @@ public class PlayerFlightControl : MonoBehaviour
 	bool roll_exists = true;
 
     Rigidbody rigidbody;
+    Player player;
 	
 	//---------------------------------------------------------------------------------
 	
 	void Start() {
-	
+
+        player = GetComponent<Player>();
 		mousePos = new Vector2(0,0);	
 		DZ = CustomPointer.instance.deadzone_radius;
 		
@@ -79,7 +81,10 @@ public class PlayerFlightControl : MonoBehaviour
 	}
 
     void FixedUpdate () {
-        
+
+        if (!player.IsResponsive) {
+            return;
+        }
         //reset the speed of the object to 0 - DRIVER
         if (Input.GetKeyDown(KeyCode.Tab)) {
             this.resetSpeeds();
