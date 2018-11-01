@@ -10,8 +10,8 @@ public class Targetable : MonoBehaviour
 {
     public float Health;
 
-    public ParticleSystem Explosion;
-    public AudioClip ExplosionNoise;
+    public ParticleSystem ExplosionDeathEffect;
+    public AudioClip ExplosionDeathNoise;
 
     public GameObject TargetPrefab;
     public GameObject TargetLockPrefab;
@@ -20,6 +20,8 @@ public class Targetable : MonoBehaviour
     
     private Image _targetBox;
     public Image targetLock;
+
+    private bool dying = false;
 
     private static List<Targetable> _possibleTargetLocks = new List<Targetable>();
     public static Targetable ClosestTarget = null;
@@ -34,6 +36,8 @@ public class Targetable : MonoBehaviour
 
     private void Update()
     {
+        if (dying) return;
+        
         if (IsDead())
         {
             StartCoroutine("Death");
@@ -111,10 +115,25 @@ public class Targetable : MonoBehaviour
     {
         if (_targetBox != null) _targetBox.enabled = false;
         if (targetLock != null) targetLock.enabled = false;
+        dying = true;
+        var explosion = Instantiate(ExplosionDeathEffect, transform.position, Quaternion.identity);
+        explosion.transform.parent = transform;
+        AudioSource.PlayClipAtPoint(ExplosionDeathNoise, Player.PlayerPosition, 1f);
 
-        //playDeathAnimation();
-        Player.CurrentScore += ScoreOnDeath;
+        var totalDuration = explosion.main.duration;
+        yield return new WaitForSeconds(totalDuration);
+        
+        explosion.Stop();
+        DestroyImmediate(explosion);
+        
+        explosion = null;
+        
         Destroy(gameObject);
+        if (_targetBox != null) _targetBox.enabled = false;
+        if (targetLock != null) targetLock.enabled = false;
+        
+        Player.CurrentScore += ScoreOnDeath;
+
         yield return null;
     }
 
@@ -123,8 +142,5 @@ public class Targetable : MonoBehaviour
         return Health <= 0;
     }
 
-//    void playDeathAnimation() {
-//        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-//        AudioSource.PlayClipAtPoint(explNoise, transform.position,1f);
-//    }
+    
 }
