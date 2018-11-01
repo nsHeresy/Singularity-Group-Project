@@ -133,7 +133,8 @@ MonoBehaviour:
     type: 2}
   TargetRangeFromPlayer: 250
   ScoreOnDeath: 100
-  targetLock: {fileID: 0}
+  targetLock: {fileID: 114103763315657086, guid: 088dc20703473174db3082bc3892c301,
+    type: 2}
 --- !u!136 &136415976211270776
 CapsuleCollider:
   m_ObjectHideFlags: 1
