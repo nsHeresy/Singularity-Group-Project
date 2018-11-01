@@ -74,27 +74,15 @@ public class WeaponSystem : MonoBehaviour
         
         if (dist < 50)
         {
-            Targetable.ClosestTarget.Damage(50);
+            Targetable.ClosestTarget.Damage(Damage);
+
         }
     }
 
     public void ShootRocket() {
         _rocketTimer = 0f;
-
-        Debug.Log(transform.forward);
-
-
         GameObject rocket = Instantiate(RocketPrefab, transform.position, transform.rotation);
         rocket.GetComponent<GuidedRocket>().target = Targetable.ClosestTarget.gameObject;
-    }
-
-    public void ApplyHit(RaycastHit hit, int damage)
-    {
-        Instantiate(ImpactEffect, hit.point, Quaternion.identity);
-        AudioSource.PlayClipAtPoint(ImpactNoise, hit.point);
-        var t = hit.collider.gameObject.GetComponent<Targetable>();
-        if (t != null)
-            t.Damage(damage);
     }
 
     public void DisableEffects()
