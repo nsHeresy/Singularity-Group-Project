@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189936212c663bc439b28afc0170c345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingObject: {fileID: 0}
+  trackingObject: {fileID: 1157062719036034}
   offset: 10
 --- !u!114 &114112976886264282
 MonoBehaviour:
@@ -220,6 +220,7 @@ MonoBehaviour:
   TargetLockPrefab: {fileID: 1612241105213142, guid: 088dc20703473174db3082bc3892c301,
     type: 2}
   TargetRangeFromPlayer: 250
+  ScoreOnDeath: 100
   targetLock: {fileID: 0}
 --- !u!114 &114900994728091488
 MonoBehaviour:
