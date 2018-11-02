@@ -14,7 +14,9 @@ public class GameOverController : MonoBehaviour {
     public void gameover()
     {
         gameOverUI.SetActive(true);
-        CustomPointer.TogglePause();
+        //CustomPointer.TogglePause();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Menu()
