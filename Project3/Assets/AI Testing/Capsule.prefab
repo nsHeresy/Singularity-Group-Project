@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
-  Explosion: {fileID: 0}
-  ExplosionNoise: {fileID: 0}
+  ExplosionDeathEffect: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 2}
+  ExplosionDeathNoise: {fileID: 8300000, guid: e0bd7ef10c4329c4e8ab686337027366, type: 3}
   TargetPrefab: {fileID: 1496289681118818, guid: ec631675869473445be7b7b1a36ca3a2,
     type: 2}
   TargetLockPrefab: {fileID: 1612241105213142, guid: 088dc20703473174db3082bc3892c301,
