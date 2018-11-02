@@ -7,6 +7,7 @@ public class AiShoot : MonoBehaviour {
     private GameObject player;
     public float range;
     public float accuracy;
+    public float damage;
 
     
     private LineRenderer _gunLine;
@@ -60,7 +61,7 @@ public class AiShoot : MonoBehaviour {
             Debug.DrawRay(transform.position, direction, Color.red, 0.3f);
             Debug.Log("hit");
             
-            player.GetComponent<Player>().Damage(1);
+            player.GetComponent<Player>().Damage(damage);
 
         }
         else
