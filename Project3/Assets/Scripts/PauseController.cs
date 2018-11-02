@@ -37,7 +37,7 @@ public class PauseController : MonoBehaviour
         PauseMenuUi.SetActive(false);
         Time.timeScale = 1f;
         IsGamePaused = false;
-        CustomPointer.TogglePause();
+        CustomPointer.TogglePause();       
     }
 
     public void Menu()
