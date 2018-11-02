@@ -44,11 +44,10 @@ public class Player : MonoBehaviour
     {
         
         var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
-        Debug.Log(collision.gameObject.name);
         Damage(magnitude * 5);
     }
 
-    private void Damage(float amount) {
+    public void Damage(float amount) {
         CurHealth -= amount;
     }
 
