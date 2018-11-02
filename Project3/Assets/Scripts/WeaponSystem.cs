@@ -1,17 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
 {
     public GameObject RocketPrefab;
-    public GameObject ImpactEffect;
-    public AudioClip ImpactNoise;
 
     //range of the weapon
     //used externally for targeting reticule
-    private static int Range = 100;
+    private const int Range = 100;
     public int Damage = 10;
 
     //weapon vars
@@ -54,11 +49,6 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    public void SwitchWeapons()
-    {
-        //stub
-    }
-
     public void Shoot()
     {
         _timer = 0f;
@@ -81,7 +71,7 @@ public class WeaponSystem : MonoBehaviour
 
     public void ShootRocket() {
         _rocketTimer = 0f;
-        GameObject rocket = Instantiate(RocketPrefab, transform.position, transform.rotation);
+        var rocket = Instantiate(RocketPrefab, transform.position, transform.rotation);
         rocket.GetComponent<GuidedRocket>().target = Targetable.ClosestTarget.gameObject;
     }
 
