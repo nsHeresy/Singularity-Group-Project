@@ -8,50 +8,28 @@ Design Team mate: Vivian Chen, Justin Cage, Victor Francis
 This prototype, named "Singularity", is set in space, at a small mining station which has fallen under attack from an unknown entity. 
 As the entity and its forces attack the station, the player must defend it at all costs, and find some way of stopping this singularity.
 The player controls a single starfighter, and must defend the station against waves of enemies.  
-The presence of this entity causes wormholes to open up in the area, which will teleport the player between them if they fly into one. These can be used to make
-a quick getaway, or get the drop on an unsuspecting foe. As time goes on, more and more of these portals will spawn, making travel in the area ever more unpredictable.
+The presence of this entity causes wormholes to open up in the area, which will teleport the player between them if they fly into one. These can be used to make a quick getaway, or get the drop on an unsuspecting foe.
 
-##Setup
-You should just be able to run the appropriate file (.exe for Windows, .app for mac), and be straight into the main game. 
-If, for whatever reason, you do have to test this in the unity client, open the GameLevel scene (Assets/Scenes/GameLevel), and play that.
-***Note, at time of submission the exe and app sometimes break the buttons on the main menu. No idea why, spent way too much time trying to figure it out...***
+## Setup
+You should just be able to run the appropriate file (.exe for Windows), and be straight into the main game. 
 
 ## Instructions
 W: Thrusters forward
 S: Brake
 A/D: Bank Left/Right
-Left Ctrl/Left Mouse Button: Fire Autolaser
+Left Mouse Button: Fire Autolaser
+Right Mouse Button: Fire Rocket
 Mouse Up: Pull Ship up
 Mouse Down: Ship down
 Mouse left: Ship turn left
 Mouse Right: Ship turn right
 
 Escape: Pause game/unpause game
-From the pause menu, you can resume, reset, and quit the game using the buttons. 
+From the pause menu, you can resume, goto main menu, and quit the game using the buttons. 
+
+**Shooting works with target locking with red box your aim to move the recticle over the target lock box**
 
 **Bonus: Try moving the mouse to one side, then quickly moving it back to the other side. If you get it right, you can do a little barrel roll!**
-
-### Drivers
-`: Destroy Ship
-TAB: Speed to 0
-
-## Main Game Loop
-In this prototype, there are no objectives implemented to handle the pacing of the game. The player can fly around the level, and 5 'enemies' will randomly fly around the level too. 
-The game loop handles the spawning of new pairs of wormholes every 30 seconds. There could be between 1 and 3 pairs of wormholes generated each time this event fires. 
-The LevelController also checks that the player is not dead. If they are, it will call the appropriate methods to 'end the game' (hiding panels, playing animations etc).
-Over time, the level will fill with more and more wormholes, as the previous wormholes persist once the new ones are made.
-The level controller also handles the main music and the 'wormhole spawn' music. These are managed by Audio Sources. The Music plays on awake, and loops indefinitely. The wormhole spawn is triggered every 30 seconds.
-
-### How it works
-Each destructable entity in the scene has a 'Targetable' script which handles things like health, damage, death etc. Only the player can travel through wormholes - the wormholes are instantiated from a prefab, and linked only to their paired wormhole.
-Any attempts to enter the Singularity will kill the player - this uses a similar method to the detection for teleporting through the smaller wormholes, but with death, instead of teleportation...
-There are 5 'enemies' in the scene - they simply pick a random location in the level, then go towards that. There was not enough time in the prototype to implement actual AI behaviours.
-
-
-## Technically challenging/interesting.
-With a fast paced space shooter that we are trying to achieve with this prototype, it is critical that the movement and controls of the ship 'feel good' to the player. To this end, developing a robust movement control system was one of the more technically challenging parts of the prototype to achieve. There is plenty of documentation on this issue, but a lot of it just didn't feel right. This particular problem was holding up development for over a week, before I found the spaceflight controls library, linked below. This library handles very well, and allows for a high degree of customisation. This customisation allowed me to tweak and balance the movement so that the player feels agile, powerful and awesome when flying around the level. The ship handles very well, it can perform tight turns and tricks, and the camera work feels great. 
-Getting this library into the project was a great success, and certainly helped to make the movement controls in the game very interesting and entertaining.
-
 
 ## Learning Resources
 ### Contains links to material used during the development of this project. Libraries, tutorials etc...
