@@ -14,12 +14,12 @@ public class Player : MonoBehaviour
 	public static Vector3 PlayerPosition;
 
     public ParticleSystem ExplodeParticle;
-    private bool Exploding = false;
+    private bool _exploding = false;
     public bool IsResponsive = true;
 
     public static int CurrentScore;
 
-    public GameObject gameoverui;
+    public GameObject GameOverUi;
 	public Image HealthBar;
 	public Text ScoreText;
 	
@@ -27,15 +27,15 @@ public class Player : MonoBehaviour
 	private void Update ()
 	{
 
-        if (Exploding) return;
+        if (_exploding) return;
 
 		PlayerPosition = transform.position;
 		HealthBar.fillAmount = CurHealth / MaxHealth;
 		ScoreText.text = CurrentScore.ToString();
         if (CurHealth <= 0) {
-            gameoverui.GetComponent<GameOverController>().gameover();
+	        GameOverUi.GetComponent<GameOverController>().gameover();
             StartCoroutine("Kill");
-            Exploding = true;
+            _exploding = true;
         }
         RegenHealth();
 	}
@@ -60,12 +60,12 @@ public class Player : MonoBehaviour
     IEnumerator Kill() {
         
         //trigger an explosion
-        ParticleSystem explosion = Instantiate(ExplodeParticle, transform.position, Quaternion.identity);
+        var explosion = Instantiate(ExplodeParticle, transform.position, Quaternion.identity);
         explosion.transform.parent = transform;
 
         IsResponsive = false;
 
-        float totalDuration = explosion.main.duration;
+        var totalDuration = explosion.main.duration;
         yield return new WaitForSeconds(totalDuration);
 
         //destroy the ship
