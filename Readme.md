@@ -4,6 +4,9 @@ Design Team mate: Vivian Chen, Justin Cage, Victor Francis
 
 ### **Note - Please use Unity version 2018 1.6f1**
 
+## Tech Demo
+* Tech demo video can be found at https://youtu.be/ht1KoMASSeA
+
 ## Concept
 This prototype, named "Singularity", is set in space, at a small mining station which has fallen under attack from an unknown entity. 
 As the entity and its forces attack the station, the player must defend it at all costs, and find some way of stopping this singularity.
