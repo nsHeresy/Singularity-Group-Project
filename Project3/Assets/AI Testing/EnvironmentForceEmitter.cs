@@ -18,7 +18,7 @@ public class EnvironmentForceEmitter : MonoBehaviour {
 	void FixedUpdate () {
         
 
-        GameObject[] entities = levelController.GetActiveSwarm().getEntities();
+        IEnumerable<GameObject> entities = levelController.GetActiveSwarm().GetEntities();
 
         foreach (GameObject entity in entities) {
             if(entity != null)

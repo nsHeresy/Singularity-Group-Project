@@ -44,8 +44,6 @@ public class SwarmBehaviour : MonoBehaviour {
         }
     }
 
-    
-
     private Vector3 CheckIfCollisionImminent() {
         var nearObjects = Physics.OverlapSphere(transform.position, collisionDetectionRadius, 9);
         if (nearObjects.Length == 0)
@@ -85,8 +83,8 @@ public class SwarmBehaviour : MonoBehaviour {
 
         randomize.Normalize();
         var swarmController = Controller.GetComponent<SwarmController>();
-        var flockCenter = swarmController.flockCenter;
-        var flockVelocity = swarmController.flockVelocity;
+        var flockCenter = swarmController.FlockCenter;
+        var flockVelocity = swarmController.FlockVelocity;
         var follow = chasee.transform.localPosition;
 
         flockCenter = flockCenter - transform.localPosition;
@@ -109,17 +107,17 @@ public class SwarmBehaviour : MonoBehaviour {
     }
 
     private Vector3 GetFlockVelocity() {
-        return Controller.GetComponent<SwarmController>().flockVelocity.normalized;
+        return Controller.GetComponent<SwarmController>().FlockVelocity.normalized;
     }
 
     public void SetController(GameObject theController)
     {
         Controller = theController;
         SwarmController swarmController = Controller.GetComponent<SwarmController>();
-        minVelocity = swarmController.minVelocity;
-        maxVelocity = swarmController.maxVelocity;
-        randomness = swarmController.randomness;
-        chasee = swarmController.chasee;
+        minVelocity = swarmController.MinVelocity;
+        maxVelocity = swarmController.MaxVelocity;
+        randomness = swarmController.Randomness;
+        chasee = swarmController.Chasee;
         inited = true;
     }
 }

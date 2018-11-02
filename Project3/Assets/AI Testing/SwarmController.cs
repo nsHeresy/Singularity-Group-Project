@@ -4,47 +4,44 @@ using UnityEngine;
 
 public class SwarmController : MonoBehaviour {
 
-    public float minVelocity = 5;
-    public float maxVelocity = 20;
-    public float randomness = 1;
-    public int flockSize = 1;
-    public GameObject prefab;
-    public GameObject chasee;
+    public float MinVelocity = 5;
+    public float MaxVelocity = 20;
+    public float Randomness = 1;
+    public int FlockSize = 1;
+    public GameObject Prefab;
+    public GameObject Chasee;
 
-    public Vector3 flockCenter;
-    public Vector3 flockVelocity;
+    public Vector3 FlockCenter;
+    public Vector3 FlockVelocity;
 
-    private GameObject[] entities;
-    private Collider swarmBound;
-    private LevelController levelController;
+    private GameObject[] _entities;
+    private Collider _swarmBound;
+    private LevelController _levelController;
 
-    private bool hasCleared = false;
+    private bool _hasCleared = false;
 
     public void StartSwarm(GameObject target) {
 
-        chasee = target;
+        Chasee = target;
 
-        swarmBound = GetComponent<Collider>();
+        _swarmBound = GetComponent<Collider>();
 
-        levelController = GameObject.Find("Level Controller").GetComponent<LevelController>();
+        _levelController = GameObject.Find("Level Controller").GetComponent<LevelController>();
 
         GenerateSwarm();
-
-
     }
 
-    void Update()
+    private void Update()
     {
-        Vector3 theCenter = Vector3.zero;
-        Vector3 theVelocity = Vector3.zero;
+        var theCenter = Vector3.zero;
+        var theVelocity = Vector3.zero;
 
-        if (hasCleared)
-            return;
+        if (_hasCleared) return;
 
-        int deadCount = 0;
-        for (int n = 0; n < entities.Length; n++)
+        var deadCount = 0;
+        for (int n = 0; n < _entities.Length; n++)
         {
-            GameObject entity = entities[n];
+            GameObject entity = _entities[n];
             if (entity != null && (entity as Object) != null)
             {
 
@@ -57,41 +54,41 @@ public class SwarmController : MonoBehaviour {
             }
         }
 
-        if(deadCount == entities.Length)
+        if(deadCount == _entities.Length)
         {
-            hasCleared = true;
-            entities = null;
+            _hasCleared = true;
+            _entities = null;
             return;
         }
 
-        flockCenter = theCenter / (flockSize);
-        flockVelocity = theVelocity / (flockSize);
+        FlockCenter = theCenter / (FlockSize);
+        FlockVelocity = theVelocity / (FlockSize);
     }
 
-    void GenerateSwarm() {
+    private void GenerateSwarm() {
 
-        entities = new GameObject[flockSize];
-        for (var i = 0; i < flockSize; i++)
+        _entities = new GameObject[FlockSize];
+        for (var i = 0; i < FlockSize; i++)
         {
-            Vector3 position = new Vector3(
-                Random.value * swarmBound.bounds.size.x,
-                Random.value * swarmBound.bounds.size.y,
-                Random.value * swarmBound.bounds.size.z
-            ) - swarmBound.bounds.extents;
+            var position = new Vector3(
+                Random.value * _swarmBound.bounds.size.x,
+                Random.value * _swarmBound.bounds.size.y,
+                Random.value * _swarmBound.bounds.size.z
+            ) - _swarmBound.bounds.extents;
 
-            GameObject entity = Instantiate(prefab, transform.position, transform.rotation) as GameObject;
+            var entity = Instantiate(Prefab, transform.position, transform.rotation) as GameObject;
             entity.transform.parent = transform;
             entity.transform.localPosition = position;
             entity.GetComponent<SwarmBehaviour>().SetController(gameObject);
-            entities[i] = entity;
+            _entities[i] = entity;
         }
     }
-
+    
     public bool IsCleared() {
-        return this.hasCleared;
+        return _hasCleared;
     }
 
-    public GameObject[] getEntities() {
-        return entities;
+    public IEnumerable<GameObject> GetEntities() {
+        return _entities;
     }
 }
