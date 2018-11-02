@@ -5,18 +5,18 @@ using UnityEngine;
 public class BlackHoleController : MonoBehaviour {
 
     public GameObject player;
-    public PlayerFlightControl control;
+    public Player playerScript;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        playerScript = player.GetComponent<Player>(); 
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (isPlayerInDistance()) {
-            control.driverSelfDestruct();
+            playerScript.Damage(playerScript.CurHealth * 2);
         }
 	}
 
@@ -24,6 +24,8 @@ public class BlackHoleController : MonoBehaviour {
     /// If the player gets too close to this object, it will destroy them
     /// </summary>
     /// <returns>If the player is in destroying range or not</returns>
+    /// 
+
     bool isPlayerInDistance() {
         if(gameObject != null && player != null)
             return (Vector3.Distance(gameObject.transform.position, player.transform.position)<= 75);
