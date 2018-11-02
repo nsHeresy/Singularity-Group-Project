@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//EXTERNAL CODE DO NOT USE TO JUDGE CODE QUALITY
+
 
 [System.Serializable]
 public class CameraFlightFollow : MonoBehaviour {
