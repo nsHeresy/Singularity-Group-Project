@@ -120,5 +120,4 @@ MonoBehaviour:
   target: {fileID: 0}
   explodeParticle: {fileID: 198846113783339352, guid: df6067b8a9c0fad4d9dfa06dd0007664,
     type: 2}
-  explosion: {fileID: 0}
   speed: 100

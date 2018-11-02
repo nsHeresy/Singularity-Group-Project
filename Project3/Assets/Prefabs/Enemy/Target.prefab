@@ -124,7 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1e+9
-  explosion: {fileID: 0}
-  explNoise: {fileID: 0}
-  isDead: 0
+  Health: 0
+  ExplosionDeathEffect: {fileID: 0}
+  ExplosionDeathNoise: {fileID: 0}
+  TargetPrefab: {fileID: 0}
+  TargetLockPrefab: {fileID: 0}
+  TargetRangeFromPlayer: 250
+  ScoreOnDeath: 100
+  targetLock: {fileID: 0}

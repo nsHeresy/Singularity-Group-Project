@@ -3919,7 +3919,7 @@ MonoBehaviour:
   ExplodeParticle: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b,
     type: 2}
   IsResponsive: 1
-  gameoverui: {fileID: 1751170164}
+  GameOverUi: {fileID: 1751170164}
   HealthBar: {fileID: 227870185}
   ScoreText: {fileID: 1579690118}
 --- !u!1 &483786647
