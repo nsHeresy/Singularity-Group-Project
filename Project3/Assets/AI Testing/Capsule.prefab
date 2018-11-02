@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee978c6a20d39cf44a8b0308920df7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 100
   ExplosionDeathEffect: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 2}
   ExplosionDeathNoise: {fileID: 8300000, guid: e0bd7ef10c4329c4e8ab686337027366, type: 3}
