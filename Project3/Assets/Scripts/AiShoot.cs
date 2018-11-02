@@ -14,7 +14,7 @@ public class AiShoot : MonoBehaviour {
     //utils
     private float _timer;
     private float _timeBetweenShots = 1f;
-    private float _effectDisplayTime = 5f;
+    private float _effectDisplayTime = .5f;
 
     private void Start()
     {
