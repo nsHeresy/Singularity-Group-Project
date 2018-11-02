@@ -21,7 +21,7 @@ public class Targetable : MonoBehaviour
     private Image _targetBox;
     public Image targetLock;
 
-    private bool dying = false;
+    private bool _dying = false;
 
     private static List<Targetable> _possibleTargetLocks = new List<Targetable>();
     public static Targetable ClosestTarget = null;
@@ -36,7 +36,7 @@ public class Targetable : MonoBehaviour
 
     private void Update()
     {
-        if (dying) return;
+        if (_dying) return;
         
         if (IsDead())
         {
@@ -55,6 +55,11 @@ public class Targetable : MonoBehaviour
         return pos.z > 0 && !IsDead();
     }
 
+    
+    /// <summary>
+    /// Finds the closest target to the mouse and target locks that target
+    /// For shooting and missie systems  
+    /// </summary>
     public static void TargetLock()
     {
         const float distance = 99999f;
@@ -78,6 +83,9 @@ public class Targetable : MonoBehaviour
         _possibleTargetLocks = new List<Targetable>();
     }
 
+    /// <summary>
+    /// Gets targets close the mouse to find the closest to target lock
+    /// </summary>
     public void FindPossibleTargetLock()
     {
         if (PreconditionTarget() == false) return;
@@ -87,6 +95,9 @@ public class Targetable : MonoBehaviour
         _possibleTargetLocks.Add(this);
     }
 
+    /// <summary>
+    /// If close to player the object is set as target for target locking and drawing target
+    /// </summary>
     public void Target()
     {
         _targetBox.enabled = false;
@@ -97,12 +108,14 @@ public class Targetable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //entities can't collide with objects in the same layer
-        if (collision.gameObject.layer == gameObject.layer)
-            return;
+        //Stops targetables killing each other
+        if (collision.gameObject.layer == gameObject.layer) return;
+        
+        Debug.Log(collision.gameObject.layer);
+        Debug.Log(gameObject.layer);
+        
         var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
         Damage(magnitude * 3);
-        //GameObject.Instantiate(explosion, entity.transform.position, Quaternion.identity);
     }
 
     public void Damage(float amount)
@@ -113,9 +126,12 @@ public class Targetable : MonoBehaviour
 
     private IEnumerator Death()
     {
+        //Removes targets
         if (_targetBox != null) _targetBox.enabled = false;
         if (targetLock != null) targetLock.enabled = false;
-        dying = true;
+        
+        //Start dying process animation 
+        _dying = true;
         var explosion = Instantiate(ExplosionDeathEffect, transform.position, Quaternion.identity);
         explosion.transform.parent = transform;
         AudioSource.PlayClipAtPoint(ExplosionDeathNoise, Player.PlayerPosition, 1f);
@@ -129,6 +145,8 @@ public class Targetable : MonoBehaviour
         explosion = null;
         
         Destroy(gameObject);
+        
+        //Ensure any targeting is removed
         if (_targetBox != null) _targetBox.enabled = false;
         if (targetLock != null) targetLock.enabled = false;
         
