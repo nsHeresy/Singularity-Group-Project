@@ -5,48 +5,43 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour {
 
-    public GameObject player;
-    public GameObject Wormhole;
+    public GameObject Player;
     public GameObject Swarm;
     
-    private GameObject activeSwarm;
+    private GameObject _activeSwarm;
 
-    int waveCount = 0;
-    float timeBetweenPortals = 30f;
-    float portalCooldown = 0f;
+    public Text WaveText;
+    
+    private int _waveCount = 0;
 
-    void Start () {
-
-        
+    private void Start () {
         StartNewSwarm();
-        
 	}
 	
-
-    //LevelController handles the main game loop, in terms of wormhole spawning
-	void Update () {
-
-        if (activeSwarm.GetComponent<SwarmController>().IsCleared()) {
-            //StartNewSwarm();
+	private void Update () {
+        if (_activeSwarm.GetComponent<SwarmController>().IsCleared()) {
+            StartNewSwarm();
         }
 	}
     
     public void StartNewSwarm() {
         //make sure the swarm is dead and done
-        if (activeSwarm != null)
+        if (_activeSwarm != null)
         {
-            activeSwarm.SetActive(false);
-            Destroy(activeSwarm);
-            activeSwarm = null;
+            _activeSwarm.SetActive(false);
+            Destroy(_activeSwarm);
+            _activeSwarm = null;
         }
 
         //make a new swarm
-        activeSwarm = Instantiate(Swarm, transform);
-        activeSwarm.GetComponent<SwarmController>().StartSwarm(player);
+        _waveCount++;
+        WaveText.text = _waveCount.ToString();
+        _activeSwarm = Instantiate(Swarm, transform);
+        _activeSwarm.GetComponent<SwarmController>().StartSwarm(Player);
     }
-    
 
     public SwarmController GetActiveSwarm() {
-        return activeSwarm.GetComponent<SwarmController>();
+        return _activeSwarm.GetComponent<SwarmController>();
     }
 }
+  
