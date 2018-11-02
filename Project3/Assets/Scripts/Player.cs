@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     public bool IsResponsive = true;
 
     public static int CurrentScore;
-	
+
+    public GameObject gameoverui;
 	public Image HealthBar;
 	public Text ScoreText;
 	
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
 		HealthBar.fillAmount = CurHealth / MaxHealth;
 		ScoreText.text = CurrentScore.ToString();
         if (CurHealth <= 0) {
+            gameoverui.GetComponent<GameOverController>().gameover();
             StartCoroutine("Kill");
             Exploding = true;
         }
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator Kill() {
-
+        
         //trigger an explosion
         ParticleSystem explosion = Instantiate(ExplodeParticle, transform.position, Quaternion.identity);
         explosion.transform.parent = transform;
@@ -79,6 +81,7 @@ public class Player : MonoBehaviour
         explosion.transform.parent = transform;
 
         totalDuration = explosion.main.duration;
+       
         yield return new WaitForSeconds(totalDuration);
 
 
@@ -87,6 +90,8 @@ public class Player : MonoBehaviour
         explosion = null;
 
         Destroy(gameObject);
+        
+
     }
 	
 }
