@@ -1,15 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour {
-
     
     public GameObject gameOverUI;
 
     public void Start()
     {
         gameOverUI.SetActive(false);
-
     }
 
     public void gameover()
@@ -23,13 +22,9 @@ public class GameOverController : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
-    public void Quit()
-    {
-        Debug.Log("Quit");
-        Application.Quit(); //Works when built
-    }
     public void Restart()
     {
+        SceneManager.UnloadSceneAsync("GameLevel");
         SceneManager.LoadScene("GameLevel");
     }
 }
