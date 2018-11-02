@@ -14,11 +14,12 @@ public class AiShoot : MonoBehaviour {
     //utils
     private float _timer;
     private float _timeBetweenShots = 1f;
-    private float _effectDisplayTime = 0.1f;
+    private float _effectDisplayTime = 5f;
 
     private void Start()
     {
        player = GameObject.Find("Characters/Player");
+       _timer = 0f;
     }
 
     private void Awake()
@@ -29,9 +30,10 @@ public class AiShoot : MonoBehaviour {
 
         // Update is called once per frame
         void LateUpdate () {
+        _timer += Time.deltaTime;
         Vector3 target = Player.PlayerPosition;
         float distance = Vector3.Distance(target, transform.position);
-        if(distance < range && _timer< _timeBetweenShots)
+        if(distance < range && _timer > _timeBetweenShots)
         {
             Shoot(target);
         }
@@ -43,22 +45,22 @@ public class AiShoot : MonoBehaviour {
 
     private void Shoot(Vector3 target)
     {
+        _gunLine.enabled = true;
         _timer = 0f;
         Vector3 direction = target - transform.position;
         direction.x += UnityEngine.Random.Range(accuracy, -accuracy);
         direction.y += UnityEngine.Random.Range(accuracy, -accuracy);
         direction.z += UnityEngine.Random.Range(accuracy, -accuracy);
         _gunLine.SetPosition(0, transform.position);
-       // _gunLine.SetPosition(1, target);
+        _gunLine.SetPosition(1, target);
 
         RaycastHit hit;
         if(Physics.Raycast(transform.position, direction, out hit, range + 50))
         {
             Debug.DrawRay(transform.position, direction, Color.red, 0.3f);
             Debug.Log("hit");
-
-            _gunLine.SetPosition(1, direction*range);
-            player.GetComponent<Player>().Damage(5);
+            
+            player.GetComponent<Player>().Damage(1);
 
         }
         else

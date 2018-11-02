@@ -111,9 +111,6 @@ public class Targetable : MonoBehaviour
         //Stops targetables killing each other
         if (collision.gameObject.layer == gameObject.layer) return;
         
-        Debug.Log(collision.gameObject.layer);
-        Debug.Log(gameObject.layer);
-        
         var magnitude = GetComponent<Rigidbody>().velocity.magnitude;
         Damage(magnitude * 3);
     }

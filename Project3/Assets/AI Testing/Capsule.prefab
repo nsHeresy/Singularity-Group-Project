@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 80
-  accuracy: 1
+  accuracy: 10
 --- !u!114 &114293063483047348
 MonoBehaviour:
   m_ObjectHideFlags: 1
