@@ -4469,7 +4469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingObject: {fileID: 477082409}
-  offset: 200
+  offset: 400
 --- !u!20 &572978310
 Camera:
   m_ObjectHideFlags: 0
